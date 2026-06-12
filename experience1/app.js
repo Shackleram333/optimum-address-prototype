@@ -239,12 +239,17 @@ function updateDropdownMaxHeight() {
     return;
   }
   const dropdownRect = dropdown.getBoundingClientRect();
+  const phoneRect = phone.getBoundingClientRect();
+  // During unit selection there is no keyboard, so the list can run to the
+  // bottom of the screen and show many more units at once.
+  const unitsMode = dropdown.classList.contains("dropdown-units");
   let boundaryTop;
-  if (isTouchDevice) {
+  if (unitsMode) {
+    boundaryTop = phoneRect.bottom;
+  } else if (isTouchDevice) {
     // The OS keyboard overlays roughly the lower half of the screen on phones.
     boundaryTop = window.innerHeight * 0.52;
   } else {
-    const phoneRect = phone.getBoundingClientRect();
     boundaryTop = keyboard.classList.contains("hidden")
       ? phoneRect.bottom
       : keyboard.getBoundingClientRect().top;
@@ -321,10 +326,17 @@ function setDropdownMode(mode) {
   updateDropdownPlacement();
   dropdown.classList.remove("hidden");
   dropdown.classList.toggle("helper-only", mode === "helper");
+  dropdown.classList.toggle("dropdown-units", mode === "units");
   if (mode === "helper") {
     dropdownTitle.textContent = "Enter street, city and zip to see matches...";
   } else if (mode === "units") {
     dropdownTitle.textContent = "Select a unit to continue";
+    // No typing happens during unit selection — dismiss the OS keyboard so the
+    // unit list can use the full height and show more units at once.
+    if (isTouchDevice) {
+      phone.classList.remove("keyboard-open");
+      addressInput.blur();
+    }
   } else {
     dropdownTitle.textContent = "Select an address to continue...";
   }
@@ -749,7 +761,10 @@ addressInput.addEventListener("focus", () => {
 
 addressInput.addEventListener("blur", () => {
   window.setTimeout(() => {
-    if (document.activeElement !== addressInput) {
+    // Keep the field looking active while the inline unit picker is open — the
+    // blur there is intentional (to dismiss the OS keyboard), not a real exit.
+    const inUnitsMode = dropdown.classList.contains("dropdown-units");
+    if (document.activeElement !== addressInput && !inUnitsMode) {
       setFocusState(false);
     }
     if (!keyboardPinned) {
