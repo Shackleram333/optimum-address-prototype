@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Optimum Address Flow Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="phone">
+      <div id="phoneViewport" class="phone-viewport">
+        <header id="header" class="header header-blue">
+          <span id="menuIcon" class="header-icon icon-menu" aria-hidden="true"></span>
+          <img id="headerLogo" class="logo" src="./assets/logo-white.png" alt="Optimum" />
+          <div class="header-actions">
+            <span class="header-icon icon-chat" aria-hidden="true"></span>
+            <span class="header-icon icon-user" aria-hidden="true"></span>
+          </div>
+        </header>
+
+        <main>
+          <section id="addressSection" class="section address-section">
+            <h1>See if Optimum is available for your home</h1>
+
+            <div class="address-input-wrap">
+              <label id="addressField" class="text-input">
+                <img class="pin-icon" src="./assets/icon-pin-blue.svg" alt="" />
+                <input id="addressInput" type="text" placeholder="123 Main St, Anytown, USA 12345" />
+                <button id="clearAddress" class="suffix-button hidden" aria-label="Clear">
+                  <img src="./assets/icon-x-light.svg" alt="" />
+                </button>
+              </label>
+
+              <section id="dropdown" class="dropdown hidden">
+                <p id="dropdownTitle" class="dropdown-title">Enter street, city and zip to see matches...</p>
+              </section>
+            </div>
+
+            <p id="addressError" class="error-row hidden">
+              <img src="./assets/icon-warning-red.svg" alt="" />
+              <span>Please enter street, city and zip to find plans</span>
+            </p>
+
+            <button id="checkPlansBtn" class="primary-btn">Find plans</button>
+          </section>
+
+          <div id="topScrim" class="page-scrim page-scrim-top hidden"></div>
+          <div id="bottomScrim" class="page-scrim page-scrim-bottom hidden"></div>
+
+          <section id="heroSection" class="section hero-wrap">
+            <article class="hero-card">
+              <img class="hero-image" src="./assets/hero-fiber.png" alt="" />
+              <div class="hero-gradient"></div>
+              <div class="hero-copy">
+                <p class="eyebrow">OPTIMUM FIBER INTERNET</p>
+                <h2>Famously Fast Fiber</h2>
+                <p>Experience fast speeds and low latency for everything you do — now with a 5 year price lock.</p>
+                <div class="hero-cta-row">
+                  <button class="hero-btn">Find plans</button>
+                  <a href="#">Terms</a>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section id="aptSection" class="section apt-section hidden">
+            <p class="selected-address"><img class="pin-mini" src="./assets/icon-pin-blue.svg" alt="" /><a href="#">1111 Stewart Ave, Bethpage, NY</a></p>
+            <h1>Multiple apartment units found</h1>
+            <label id="aptField" class="text-input">
+              <input id="aptInput" type="text" placeholder="Select apartment or unit" />
+              <button id="clearApt" class="suffix-button hidden" aria-label="Clear">
+                <img src="./assets/icon-x-light.svg" alt="" />
+              </button>
+            </label>
+            <section id="aptDropdown" class="dropdown hidden"></section>
+            <p id="aptError" class="error-row hidden">
+              <img src="./assets/icon-warning-red.svg" alt="" />
+              <span>Please enter and select an apartment or unit</span>
+            </p>
+            <button id="findPlansAptBtn" class="primary-btn">Find plans</button>
+          </section>
+
+          <section id="checkingSection" class="checking-section hidden" aria-live="polite">
+            <div class="checking-ring">
+              <img class="checking-pin" src="./assets/icon-pin-blue.svg" alt="" />
+            </div>
+            <p>Checking address...</p>
+          </section>
+
+          <section id="activeAccountSection" class="section active-account-section hidden">
+            <h1>This address has an active Optimum account.</h1>
+            <p id="activeAddressText" class="active-address-text">1111 STEWART AVE APT 1B BETHPAGE NY 11714</p>
+            <a id="editAddressLink" href="#">Edit address</a>
+
+            <article class="active-account-card">
+              <h2>Need service at this address?</h2>
+              <button id="startShoppingBtn" class="primary-btn">Start shopping</button>
+              <hr />
+              <h2>Managing your existing service at this address?</h2>
+              <button id="myAccountBtn" class="secondary-btn">My account</button>
+            </article>
+          </section>
+
+          <section id="quotesSection" class="quotes-section hidden">
+            <div class="quotes-header">
+              <img class="quotes-logo" src="./assets/logo-black.png" alt="Optimum" />
+              <div class="quotes-header-actions">
+                <span class="qh-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0b132b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/></svg>
+                </span>
+                <span class="qh-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0b132b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="buyflow-tracker">
+              <span class="bt-seg bt-active"></span>
+              <span class="bt-seg"></span>
+              <span class="bt-seg"></span>
+              <span class="bt-seg"></span>
+            </div>
+
+            <div class="quotes-scroll">
+              <h1 class="quotes-title">Pick your Internet speed</h1>
+
+              <div class="edu-banner">
+                <svg class="edu-check" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0a7d34" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
+                <p>Save $5/mo. on any internet plan — just provide your <strong>.edu</strong> email on the contact page.</p>
+              </div>
+
+              <div class="plans-include">
+                <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#637085" aria-hidden="true"><path d="M208 80h-24V56a56 56 0 0 0-112 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16ZM96 56a32 32 0 0 1 64 0v24H96Z"/></svg>5-year price guarantee</span>
+                <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#637085" aria-hidden="true"><path d="M226 117a52 52 0 0 1-68-49l-31 31-31-31-22 22 31 31-31 31 22 22 31-31 31 31a52 52 0 0 1 67-69Z" opacity=".0"/><path d="M222 90a8 8 0 0 0-13-3l-26 26-23-4-4-23 26-26a8 8 0 0 0-3-13 56 56 0 0 0-69 70L38 165a24 24 0 0 0 34 34l48-48a56 56 0 0 0 70-69Z"/></svg>Free Installation</span>
+                <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#637085" aria-hidden="true"><path d="M128 168a16 16 0 1 0 16 16 16 16 0 0 0-16-16Zm0-48a60 60 0 0 0-42 17 8 8 0 0 0 11 11 44 44 0 0 1 62 0 8 8 0 0 0 11-11 60 60 0 0 0-42-17Zm0-48a108 108 0 0 0-76 31 8 8 0 0 0 11 11 92 92 0 0 1 130 0 8 8 0 0 0 11-11 108 108 0 0 0-76-31Z"/></svg>Equipment Included</span>
+              </div>
+
+              <div class="plan-rail" id="internetRail">
+                <article class="plan-card">
+                  <div class="plan-gauge">
+                    <svg viewBox="0 0 56 30" width="56" height="30" fill="none" aria-hidden="true"><path d="M4 28a24 24 0 0 1 48 0" stroke="#d4d8e0" stroke-width="4" stroke-linecap="round"/><path d="M4 28a24 24 0 0 1 14-21.8" stroke="#0066de" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#0b132b"/><line x1="28" y1="28" x2="16" y2="13" stroke="#0b132b" stroke-width="2.5" stroke-linecap="round"/></svg>
+                  </div>
+                  <h2 class="plan-name">300 Mbps Internet</h2>
+                  <div class="plan-price">$25<span>/mo.</span></div>
+                  <p class="plan-qualifier">with Auto Pay &amp; Paperless Bill</p>
+                  <p class="plan-guarantee"><svg viewBox="0 0 256 256" width="13" height="13" fill="#637085" aria-hidden="true"><path d="M208 80h-24V56a56 56 0 0 0-112 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16ZM96 56a32 32 0 0 1 64 0v24H96Z"/></svg>5-year price guarantee</p>
+                  <div class="plan-perk">
+                    <span class="hbo-logo">HBO<span>Max</span></span>
+                    <p>HBO Max Basic with Ads plan: 12 months included <a href="#">See details</a></p>
+                  </div>
+                  <div class="plan-links">
+                    <a href="#">Details</a>
+                    <a href="#">Broadband Facts</a>
+                  </div>
+                  <button class="primary-btn plan-select">Select</button>
+                </article>
+
+                <article class="plan-card">
+                  <div class="plan-gauge">
+                    <svg viewBox="0 0 56 30" width="56" height="30" fill="none" aria-hidden="true"><path d="M4 28a24 24 0 0 1 48 0" stroke="#d4d8e0" stroke-width="4" stroke-linecap="round"/><path d="M4 28a24 24 0 0 1 46.5-6" stroke="#0066de" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#0b132b"/><line x1="28" y1="28" x2="44" y2="16" stroke="#0b132b" stroke-width="2.5" stroke-linecap="round"/></svg>
+                  </div>
+                  <h2 class="plan-name">1 Gig Fiber Internet</h2>
+                  <div class="plan-price">$45<span>/mo.</span> <s>$129.99/mo.</s></div>
+                  <p class="plan-qualifier">with Auto Pay &amp; Paperless Bill</p>
+                  <p class="plan-guarantee"><svg viewBox="0 0 256 256" width="13" height="13" fill="#637085" aria-hidden="true"><path d="M208 80h-24V56a56 56 0 0 0-112 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16ZM96 56a32 32 0 0 1 64 0v24H96Z"/></svg>5-year price guarantee</p>
+                  <div class="plan-perk">
+                    <span class="hbo-logo">HBO<span>Max</span></span>
+                    <p>HBO Max Basic with Ads plan: 12 months included <a href="#">See details</a></p>
+                  </div>
+                  <div class="plan-links">
+                    <a href="#">Details</a>
+                    <a href="#">Broadband Facts</a>
+                  </div>
+                  <button class="secondary-btn plan-select">Select</button>
+                </article>
+              </div>
+
+              <div class="carousel-dots"><span class="dot dot-active"></span><span class="dot"></span></div>
+              <p class="wired-note">Wired connection speeds. WiFi speeds may vary.</p>
+
+              <div class="quotes-subhead">TV (optional)</div>
+              <p class="quotes-promo"><svg viewBox="0 0 256 256" width="18" height="18" fill="#0066de" aria-hidden="true"><path d="M243 110 146 13a14 14 0 0 0-10-4H40a14 14 0 0 0-14 14v96a14 14 0 0 0 4 10l97 97a14 14 0 0 0 20 0l96-96a14 14 0 0 0 0-20ZM76 84a12 12 0 1 1 12-12 12 12 0 0 1-12 12Z"/></svg>Save $10/mo. on Internet when you add TV</p>
+
+              <div class="plan-rail" id="tvRail">
+                <article class="plan-card tv-card">
+                  <span class="popular-badge">Most popular</span>
+                  <div class="tv-icon"><svg viewBox="0 0 256 256" width="34" height="34" fill="none" stroke="#0066de" stroke-width="14"><rect x="32" y="56" width="192" height="128" rx="12"/><line x1="88" y1="216" x2="168" y2="216" stroke-linecap="round"/></svg></div>
+                  <h2 class="plan-name">Entertainment TV</h2>
+                  <div class="plan-price">$30<span>/mo.</span></div>
+                  <p class="plan-qualifier">125+ channels</p>
+                  <ul class="tv-features">
+                    <li>Local channels &amp; news</li>
+                    <li>Sports &amp; entertainment</li>
+                    <li>Free DVR included</li>
+                  </ul>
+                  <div class="plan-links"><a href="#">Details</a></div>
+                  <button class="secondary-btn plan-select">Add TV</button>
+                </article>
+
+                <article class="plan-card tv-card">
+                  <div class="tv-icon"><svg viewBox="0 0 256 256" width="34" height="34" fill="none" stroke="#0066de" stroke-width="14"><rect x="32" y="56" width="192" height="128" rx="12"/><line x1="88" y1="216" x2="168" y2="216" stroke-linecap="round"/></svg></div>
+                  <h2 class="plan-name">Everything TV</h2>
+                  <div class="plan-price">$70<span>/mo.</span></div>
+                  <p class="plan-qualifier">340+ channels</p>
+                  <ul class="tv-features">
+                    <li>Everything in Entertainment</li>
+                    <li>Premium movie channels</li>
+                    <li>Regional sports networks</li>
+                  </ul>
+                  <div class="plan-links"><a href="#">Details</a></div>
+                  <button class="secondary-btn plan-select">Add TV</button>
+                </article>
+              </div>
+            </div>
+
+            <div class="quotes-cart">
+              <div class="cart-total">
+                <strong>$130.00<span>/mo.</span></strong>
+                <button class="cart-details" type="button">Details
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0066de" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
+                </button>
+              </div>
+              <button class="primary-btn cart-continue">Continue</button>
+            </div>
+          </section>
+
+          <footer id="footer" class="section footer hidden">
+            <hr />
+            <p>Pricing, offers, and terms subject to change and discontinuance w/o notice. All trademarks and service marks are the property of their respective owner.</p>
+            <p>© 2026 CSC Holdings, LLC.</p>
+            <a href="#">About Optimum</a>
+            <a href="#">Disclaimers</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+            <div class="socials">
+              <img src="./assets/social-1.png" alt="" />
+              <img src="./assets/social-2.png" alt="" />
+              <img src="./assets/social-3.png" alt="" />
+              <img src="./assets/social-4.png" alt="" />
+              <img src="./assets/social-5.png" alt="" />
+              <img src="./assets/social-6.png" alt="" />
+            </div>
+          </footer>
+        </main>
+      </div>
+
+      <div id="plansModal" class="plans-modal hidden" aria-hidden="true">
+        <div class="plans-modal-scrim"></div>
+        <div class="plans-modal-card">
+          <div class="plans-indicator">
+            <svg class="plans-search" viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="#0066de" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><line x1="16.5" y1="16.5" x2="21" y2="21" /></svg>
+            <svg class="plans-check" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#0066de" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" /></svg>
+          </div>
+          <p id="plansModalText" class="plans-modal-text">Finding plans...</p>
+        </div>
+      </div>
+
+      <div id="keyboard" class="keyboard hidden" aria-hidden="true">
+        <div class="kb-keys">
+          <div class="kb-row"></div>
+          <div class="kb-row kb-row-mid"></div>
+          <div class="kb-row kb-row-short"></div>
+        </div>
+        <div class="kb-control">
+          <div class="kb-bottom">
+            <button id="keyboardModeToggle" data-key="123">123</button>
+            <button data-key="space">space</button>
+            <button data-key="return">return</button>
+          </div>
+          <span class="kb-emoji" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2" /><path d="M8 14.4a5 5 0 0 0 8 0" /><circle cx="8.8" cy="9.8" r="0.5" fill="currentColor" stroke="none" /><circle cx="15.2" cy="9.8" r="0.5" fill="currentColor" stroke="none" /></svg>
+          </span>
+          <span class="kb-mic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3" /><path d="M5.5 11a6.5 6.5 0 0 0 13 0" /><line x1="12" y1="17.5" x2="12" y2="21" /></svg>
+          </span>
+          <div class="kb-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
