@@ -46,7 +46,7 @@ body {
 
 .address-section { padding-top:14px; padding-bottom:24px; }
 .address-input-wrap { position:relative; height:52px; overflow:visible; }
-h1 { margin:20px 0 16px; color:var(--ink); font-size:24px; line-height:30px; letter-spacing:-.5px; font-weight:700; }
+h1 { margin:20px 0 16px; color:var(--ink); font-size:20px; line-height:26px; letter-spacing:-.5px; font-weight:700; white-space:nowrap; }
 .text-input { border:1px solid var(--line); border-radius:8px; height:52px; display:flex; align-items:center; gap:8px; padding:0 16px; }
 .text-input.focused { border:2px solid #0066de; }
 .text-input.error { border:1.5px solid var(--err); background:#fff4f3; }
