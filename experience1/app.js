@@ -373,6 +373,19 @@ function showKeyboard(show, focusEl) {
   if (isTouchDevice) {
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
+    if (show) {
+      // Pin the search to the top so the blue header scrolls out of view.
+      window.setTimeout(() => {
+        const delta =
+          addressSection.getBoundingClientRect().top -
+          phoneViewport.getBoundingClientRect().top;
+        phoneViewport.scrollTo({
+          top: phoneViewport.scrollTop + delta,
+          behavior: "smooth",
+        });
+        updateDropdownMaxHeight();
+      }, 120);
+    }
     return;
   }
   if (show) {
