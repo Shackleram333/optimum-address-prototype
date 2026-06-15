@@ -444,10 +444,18 @@ function updateAptDropdownMaxHeight() {
   }
   const phoneRect = phone.getBoundingClientRect();
   const dropdownRect = aptDropdown.getBoundingClientRect();
-  const keyboardTop = keyboard.classList.contains("hidden")
-    ? phoneRect.bottom
-    : keyboard.getBoundingClientRect().top;
-  const availableHeight = Math.max(120, Math.floor(keyboardTop - dropdownRect.top - 6));
+  let boundaryTop;
+  if (isTouchDevice) {
+    // Clamp to the visible viewport height (window.innerHeight is stable and
+    // doesn't shrink while the keyboard dismisses, unlike visualViewport),
+    // leaving a gap so the last rows clear the browser's bottom URL bar.
+    boundaryTop = Math.min(phoneRect.bottom, window.innerHeight) - 72;
+  } else {
+    boundaryTop = keyboard.classList.contains("hidden")
+      ? phoneRect.bottom
+      : keyboard.getBoundingClientRect().top;
+  }
+  const availableHeight = Math.max(120, Math.floor(boundaryTop - dropdownRect.top - 6));
   aptDropdown.style.maxHeight = `${availableHeight}px`;
 }
 
