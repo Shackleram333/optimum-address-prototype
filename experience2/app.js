@@ -617,7 +617,11 @@ function enterPlansFlow() {
   checkingSection.classList.add("hidden");
   activeAccountSection.classList.add("hidden");
   quotesSection.classList.add("hidden");
-  phoneViewport.scrollTo({ top: 0, behavior: "auto" });
+  // Keep the scroll position where it was — on phones the modal is fixed to the
+  // viewport (see CSS), so the card stays in view without snapping to the top.
+  if (!isTouchDevice) {
+    phoneViewport.scrollTo({ top: 0, behavior: "auto" });
+  }
   setCurrentPage("checking");
 
   if (checkingTimer) {

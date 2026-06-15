@@ -28,6 +28,9 @@ body {
     bottom:0;
     padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
   }
+  /* Pin the Checking/Finding/Plans modal to the visible viewport so it stays in
+     view over whatever the home screen was scrolled to (no scroll-to-top snap). */
+  .plans-modal { position:fixed; }
 }
 .section { padding-inline:24px; }
 .hidden { display:none !important; }
