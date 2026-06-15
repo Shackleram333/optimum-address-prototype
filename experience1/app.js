@@ -352,7 +352,7 @@ function setDropdownMode(mode) {
   if (mode === "helper") {
     dropdownTitle.textContent = "Keep typing to see matches...";
   } else if (mode === "units") {
-    dropdownTitle.textContent = "Select a unit to continue";
+    dropdownTitle.textContent = "Select a unit to continue...";
     // No typing happens during unit selection — dismiss the OS keyboard so the
     // unit list can use the full height and show more units at once.
     if (isTouchDevice) {
