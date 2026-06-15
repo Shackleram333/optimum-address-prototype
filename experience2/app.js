@@ -157,9 +157,13 @@ function selectionComplete() {
   return !!selectedSuggestion && (!isMDU(selectedSuggestion) || !!selectedUnit);
 }
 
+// Sentinel for the "I don't see my unit here" option — lets the flow proceed on
+// the building address without a specific apartment.
+const UNIT_NONE = "__none__";
+
 function fullSelectedAddress() {
   if (!selectedSuggestion) return "";
-  if (isMDU(selectedSuggestion) && selectedUnit) {
+  if (isMDU(selectedSuggestion) && selectedUnit && selectedUnit !== UNIT_NONE) {
     return `${selectedSuggestion.line1}, ${selectedUnit}, ${selectedSuggestion.line2}`;
   }
   return selectedSuggestion.value;
@@ -381,6 +385,12 @@ function renderUnitRows(units) {
     row.innerHTML = `<span>${unit}</span>`;
     dropdownRowsHost.appendChild(row);
   });
+  const noneRow = document.createElement("button");
+  noneRow.type = "button";
+  noneRow.className = "dropdown-row unit-row unit-row-none";
+  noneRow.dataset.unitNone = "true";
+  noneRow.innerHTML = `<span>I don't see my unit here</span>`;
+  dropdownRowsHost.appendChild(noneRow);
   dropdown._rows = null;
 }
 
@@ -778,7 +788,7 @@ dropdown.addEventListener("click", (event) => {
 
   // Unit pick (inline MDU selection).
   if (row.classList.contains("unit-row")) {
-    selectedUnit = row.dataset.unit;
+    selectedUnit = row.dataset.unitNone === "true" ? UNIT_NONE : row.dataset.unit;
     addressInput.value = fullSelectedAddress();
     syncAddressInputUI();
     updateCtaLabel();
