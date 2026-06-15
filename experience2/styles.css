@@ -56,7 +56,8 @@ body {
   letter-spacing:-.2px;
 }
 
-.header { height:75px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; transition:all .18s ease; }
+.header { height:75px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; transition:all .18s ease; position:relative; }
+.menu-back { position:absolute; top:0; right:0; width:72px; height:100%; z-index:40; background:transparent; }
 .header-blue { background:var(--blue); }
 .header-white { background:#fff; border-bottom:1px solid #bebebe; justify-content:flex-start; }
 .header-white #menuIcon,
