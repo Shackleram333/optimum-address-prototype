@@ -236,9 +236,9 @@ function setFocusState(active) {
   topScrim.classList.toggle("hidden", !active);
   bottomScrim.classList.add("hidden");
   if (active) {
-    // Anchor the dimming scrim to the top of the hero so it always covers the
-    // same area regardless of headline height (which changes the layout above).
-    topScrim.style.top = `${heroSection.offsetTop}px`;
+    // Anchor the dimming scrim near the top of the hero (a little above it) so it
+    // always covers the same area regardless of headline height.
+    topScrim.style.top = `${heroSection.offsetTop - 24}px`;
   }
 }
 
