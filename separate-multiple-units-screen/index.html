@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260615b" />
+    <link rel="stylesheet" href="./styles.css?v=20260615c" />
   </head>
   <body>
     <div class="phone">
@@ -31,14 +31,14 @@
             <div class="address-input-wrap">
               <label id="addressField" class="text-input">
                 <img class="pin-icon" src="./assets/icon-pin-blue.svg" alt="" />
-                <input id="addressInput" type="text" placeholder="123 Main St, Anytown, USA 12345" />
+                <input id="addressInput" type="text" inputmode="text" name="optimum-address-search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore data-form-type="other" placeholder="123 Main St, Anytown, USA 12345" />
                 <button id="clearAddress" class="suffix-button hidden" aria-label="Clear">
                   <img src="./assets/icon-x-light.svg" alt="" />
                 </button>
               </label>
 
               <section id="dropdown" class="dropdown hidden">
-                <p id="dropdownTitle" class="dropdown-title">Enter street, city and zip to see matches...</p>
+                <p id="dropdownTitle" class="dropdown-title">Keep typing to see matches...</p>
               </section>
             </div>
 
@@ -261,6 +261,11 @@
       </div>
 
       <div id="keyboard" class="keyboard hidden" aria-hidden="true">
+        <div id="kbSuggest" class="kb-suggest">
+          <button type="button" class="kb-suggest-item" data-slot="0"></button>
+          <button type="button" class="kb-suggest-item kb-suggest-mid" data-slot="1"></button>
+          <button type="button" class="kb-suggest-item" data-slot="2"></button>
+        </div>
         <div class="kb-keys">
           <div class="kb-row"></div>
           <div class="kb-row kb-row-mid"></div>
@@ -270,7 +275,9 @@
           <div class="kb-bottom">
             <button id="keyboardModeToggle" data-key="123">123</button>
             <button data-key="space">space</button>
-            <button data-key="return">return</button>
+            <button class="kb-return" data-key="return" aria-label="return">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20" /><path d="M20 4v7a4 4 0 0 1-4 4H4" /></svg>
+            </button>
           </div>
           <span class="kb-emoji" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2" /><path d="M8 14.4a5 5 0 0 0 8 0" /><circle cx="8.8" cy="9.8" r="0.5" fill="currentColor" stroke="none" /><circle cx="15.2" cy="9.8" r="0.5" fill="currentColor" stroke="none" /></svg>
@@ -283,6 +290,6 @@
       </div>
     </div>
 
-    <script src="./app.js?v=20260615a"></script>
+    <script src="./app.js?v=20260615c"></script>
   </body>
 </html>
