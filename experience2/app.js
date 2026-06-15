@@ -262,13 +262,10 @@ function updateDropdownMaxHeight() {
   let boundaryTop;
   if (unitsMode) {
     if (isTouchDevice) {
-      // Clamp to the actually-visible viewport (not the taller phone frame) and
-      // leave room for the browser's bottom URL bar, so the last unit rows stay
-      // reachable above it.
-      const visibleBottom = window.visualViewport
-        ? window.visualViewport.height
-        : window.innerHeight;
-      boundaryTop = Math.min(phoneRect.bottom, visibleBottom) - 44;
+      // Clamp to the visible viewport height (window.innerHeight is stable and
+      // doesn't shrink while the keyboard dismisses, unlike visualViewport),
+      // leaving a gap so the last rows clear the browser's bottom URL bar.
+      boundaryTop = Math.min(phoneRect.bottom, window.innerHeight) - 72;
     } else {
       boundaryTop = phoneRect.bottom;
     }
@@ -424,7 +421,10 @@ function setDropdownMode(mode) {
     if (isTouchDevice) {
       const y = phoneViewport.scrollTop;
       addressInput.blur();
-      const restore = () => phoneViewport.scrollTo({ top: y });
+      const restore = () => {
+        phoneViewport.scrollTo({ top: y });
+        updateDropdownMaxHeight();
+      };
       window.requestAnimationFrame(restore);
       window.setTimeout(restore, 60);
       window.setTimeout(restore, 300);
