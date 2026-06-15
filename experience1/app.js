@@ -283,9 +283,9 @@ function getFilteredSuggestions(query) {
     suggestion.line1.toLowerCase().includes(q) ||
     suggestion.line2.toLowerCase().includes(q);
 
-  // Hold back the "Stewart" demo addresses until the query is specific enough
-  // ("1111 St"), so they don't surface on the first few digits.
-  const STEWART_GATE = "1111 st";
+  // Hold back the "Stewart" demo addresses until the user starts the street name
+  // ("1111 S"), so they don't surface on the bare house number alone.
+  const STEWART_GATE = "1111 s";
   const primaryMatches = ADDRESS_SUGGESTIONS.filter((suggestion) => {
     if (!matchesQuery(suggestion, query)) {
       return false;
