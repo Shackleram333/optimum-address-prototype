@@ -17,6 +17,12 @@ body {
 @media (pointer: coarse) {
   #keyboard { display:none !important; }
 }
+/* Phone-sized touch screens: fill the full device width (drop the 414px cap)
+   so larger phones (Pro Max, Plus, big Android) go edge-to-edge. Tablets and
+   desktop keep the centered 414px mockup. */
+@media (pointer: coarse) and (max-width: 480px) {
+  .phone { max-width:none; }
+}
 .section { padding-inline:24px; }
 .hidden { display:none !important; }
 
