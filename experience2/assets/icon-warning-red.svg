@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="WarningCircle (custom)" clip-path="url(#clip0_0_448)">
+<circle id="Ellipse" cx="8" cy="8" r="8" fill="var(--fill-0, #D92D20)"/>
+<rect id="Rectangle" x="7.25" y="3.5" width="1.5" height="6" rx="0.75" fill="var(--fill-0, white)"/>
+<circle id="Ellipse_2" cx="8" cy="11.75" r="0.75" fill="var(--fill-0, white)"/>
+</g>
+<defs>
+<clipPath id="clip0_0_448">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>
