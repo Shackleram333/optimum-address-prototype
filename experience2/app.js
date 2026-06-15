@@ -261,7 +261,17 @@ function updateDropdownMaxHeight() {
   const unitsMode = dropdown.classList.contains("dropdown-units");
   let boundaryTop;
   if (unitsMode) {
-    boundaryTop = phoneRect.bottom;
+    if (isTouchDevice) {
+      // Clamp to the actually-visible viewport (not the taller phone frame) and
+      // leave room for the browser's bottom URL bar, so the last unit rows stay
+      // reachable above it.
+      const visibleBottom = window.visualViewport
+        ? window.visualViewport.height
+        : window.innerHeight;
+      boundaryTop = Math.min(phoneRect.bottom, visibleBottom) - 44;
+    } else {
+      boundaryTop = phoneRect.bottom;
+    }
   } else if (isTouchDevice) {
     // The OS keyboard overlays roughly the lower half of the screen on phones.
     boundaryTop = window.innerHeight * 0.52;
