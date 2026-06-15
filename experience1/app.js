@@ -350,7 +350,7 @@ function setDropdownMode(mode) {
   dropdown.classList.toggle("helper-only", mode === "helper");
   dropdown.classList.toggle("dropdown-units", mode === "units");
   if (mode === "helper") {
-    dropdownTitle.textContent = "Enter street, city and zip to see matches...";
+    dropdownTitle.textContent = "Keep typing to see matches...";
   } else if (mode === "units") {
     dropdownTitle.textContent = "Select a unit to continue";
     // No typing happens during unit selection — dismiss the OS keyboard so the
@@ -669,7 +669,7 @@ addressInput.addEventListener("input", (event) => {
   dropdownTitle.textContent =
     v.length >= 3
       ? "No address matches yet. Keep typing to refine."
-      : "Enter street, city and zip to see matches...";
+      : "Keep typing to see matches...";
   updatePredictions();
 });
 
