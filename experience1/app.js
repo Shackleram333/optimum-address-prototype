@@ -17,6 +17,7 @@ const heroSection = document.getElementById("heroSection");
 const topScrim = document.getElementById("topScrim");
 const bottomScrim = document.getElementById("bottomScrim");
 
+const endPrototype = document.getElementById("endPrototype");
 const checkingSection = document.getElementById("checkingSection");
 const activeAccountSection = document.getElementById("activeAccountSection");
 const activeAddressText = document.getElementById("activeAddressText");
@@ -604,6 +605,37 @@ function enterQuotesStep() {
   phoneViewport.scrollTo({ top: 0, behavior: "auto" });
   setCurrentPage("quotes");
 }
+
+function showEndPrototype() {
+  endPrototype.classList.remove("hidden");
+  endPrototype.setAttribute("aria-hidden", "false");
+}
+
+function hideEndPrototype() {
+  endPrototype.classList.add("hidden");
+  endPrototype.setAttribute("aria-hidden", "true");
+}
+
+function restartPrototype() {
+  hideEndPrototype();
+  addressInput.value = "";
+  resetSelection();
+  syncAddressInputUI();
+  enterAddressStep();
+}
+
+// Last screen (List Quotes): a tap reveals the "End of prototype" overlay; a tap
+// on the overlay restarts the flow from the address step.
+quotesSection.addEventListener("click", () => {
+  if (currentPage === "quotes") {
+    showEndPrototype();
+  }
+});
+
+endPrototype.addEventListener("click", (event) => {
+  event.stopPropagation();
+  restartPrototype();
+});
 
 addressInput.addEventListener("input", (event) => {
   // Native (phone) typing: any key advances the demo target address, so tapping

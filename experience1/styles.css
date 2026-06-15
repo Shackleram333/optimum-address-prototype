@@ -20,6 +20,27 @@ body {
 .section { padding-inline:24px; }
 .hidden { display:none !important; }
 
+.end-prototype {
+  position:absolute;
+  inset:0;
+  z-index:60;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(8,12,20,.78);
+  cursor:pointer;
+}
+.end-prototype-text {
+  margin:0;
+  padding:0 40px;
+  color:#fff;
+  font-size:24px;
+  line-height:34px;
+  font-weight:600;
+  text-align:center;
+  letter-spacing:-.2px;
+}
+
 .header { height:75px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; transition:all .18s ease; }
 .header-blue { background:var(--blue); }
 .header-white { background:#fff; border-bottom:1px solid #bebebe; justify-content:flex-start; }
