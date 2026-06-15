@@ -42,6 +42,10 @@ let selectedApartment = "";
 let checkingTimer = null;
 let currentPage = "address";
 
+// Sentinel for the "I don't see my unit here" option — lets the flow proceed on
+// the building address without a specific apartment.
+const UNIT_NONE = "__none__";
+
 function setPageInUrl(page) {
   const url = new URL(window.location.href);
   url.searchParams.set("page", page);
@@ -257,6 +261,12 @@ function renderAptDropdownRows(rows) {
     row.innerHTML = `<span>${option}</span>`;
     aptDropdown.appendChild(row);
   });
+  const noneRow = document.createElement("button");
+  noneRow.type = "button";
+  noneRow.className = "dropdown-row apt-dropdown-row apt-dropdown-row-none";
+  noneRow.dataset.apartmentNone = "true";
+  noneRow.innerHTML = `<span>I don't see my unit here</span>`;
+  aptDropdown.appendChild(noneRow);
 }
 
 function setAptDropdownVisible(show) {
@@ -455,7 +465,8 @@ function enterActiveAccountStep() {
   activeInput = null;
   keyboardPinned = false;
 
-  const selectedUnit = selectedApartment || aptInput.value.trim();
+  const rawUnit = selectedApartment || aptInput.value.trim();
+  const selectedUnit = rawUnit === UNIT_NONE ? "" : rawUnit;
   const upperAddress = `${selectedAddress || "1111 STEWART AVE, BETHPAGE, NY 11714"} ${selectedUnit}`.trim();
   activeAddressText.textContent = upperAddress.toUpperCase().replaceAll(",", "");
 
@@ -659,12 +670,17 @@ aptInput.addEventListener("blur", () => {
 });
 
 aptDropdown.addEventListener("click", (event) => {
-  const row = event.target.closest("[data-apartment]");
+  const row = event.target.closest("[data-apartment], [data-apartment-none]");
   if (!row) {
     return;
   }
-  selectedApartment = row.dataset.apartment;
-  aptInput.value = selectedApartment;
+  if (row.dataset.apartmentNone === "true") {
+    selectedApartment = UNIT_NONE;
+    aptInput.value = "I don't see my unit here";
+  } else {
+    selectedApartment = row.dataset.apartment;
+    aptInput.value = selectedApartment;
+  }
   syncAptInputUI();
   showAptError(false);
   setAptDropdownVisible(false);

@@ -1,0 +1,96 @@
+- generic [ref=e1]:
+  - alert [ref=e2]: Press Option+1 for screen-reader mode, Option+0 to cancel
+  - button "Use Website In a Screen-Reader Mode" [ref=e3]
+  - link "Accessibility Screen-Reader Guide, Feedback, and Issue Reporting | New window" [ref=e4] [cursor=pointer]:
+    - /url: https://accessibe.com/blog/knowledgebase/screen-reader-guide
+  - generic:
+    - generic:
+      - region "Skip Links":
+        - generic:
+          - link "Skip to Content":
+            - /url: "#acsbContent"
+  - dialog [ref=e5]:
+    - generic [ref=e6]:
+      - img [ref=e7]
+      - text: Simplify Text
+    - button [ref=e9] [cursor=pointer]:
+      - img [ref=e10]
+  - 'button "Open accessiBe: accessibility options, statement and help" [ref=e13] [cursor=pointer]':
+    - generic:
+      - img [ref=e14]
+      - img
+      - img
+  - generic [ref=e17]:
+    - banner [ref=e18]:
+      - navigation [ref=e19]:
+        - img "optimum logo" [ref=e24]
+    - main [ref=e25]:
+      - generic [ref=e27]:
+        - heading "See if Optimum is available for your home" [level=3] [ref=e28]
+        - paragraph [ref=e29]: Enter your address now to see the best Internet plans for your home!
+        - form "autocomplete-form" [ref=e30]:
+          - generic [ref=e31]:
+            - generic [ref=e34]:
+              - generic [ref=e38]:
+                - combobox "Enter your address*" [ref=e39]
+                - textbox
+              - textbox "Apt" [ref=e41]
+            - generic [ref=e42]:
+              - button "Check availability" [disabled]: Check availability
+        - generic [ref=e43]:
+          - generic [ref=e44]: Already a customer?
+          - generic [ref=e45]:
+            - link "Sign in" [ref=e46] [cursor=pointer]:
+              - /url: https://www.optimum.net/login
+            - link "Moving?" [ref=e47] [cursor=pointer]:
+              - /url: https://www.optimum.com/moving
+          - paragraph [ref=e49]:
+            - text: Offers for new residential customers only. Check out our
+            - link "Optimum Business Offers" [ref=e50] [cursor=pointer]:
+              - /url: https://business.optimum.com/Buyflow/Storefront?isResidentialStorefrontOrder=true
+    - contentinfo [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]: Pricing, offers, and terms subject to change and discontinuance w/o notice. All trademarks and service marks are the property of their respective owner.
+        - generic [ref=e54]: © 2026 CSC Holdings, LLC.
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - link "About Optimum" [ref=e58] [cursor=pointer]:
+            - /url: https://www.optimum.com/about-us/
+          - link "Disclaimers" [ref=e60] [cursor=pointer]:
+            - /url: https://www.optimum.com/terms-of-service/residential
+          - link "Terms" [ref=e62] [cursor=pointer]:
+            - /url: https://www.optimum.com/terms-of-service
+          - link "Privacy" [ref=e64] [cursor=pointer]:
+            - /url: https://www.optimum.com/terms-of-service/privacy/Customer-Privacy/optimum-customer-privacy-policy
+        - generic [ref=e65]:
+          - button "Facebook" [ref=e68] [cursor=pointer]:
+            - img "Facebook" [ref=e69]
+          - button "Instagram" [ref=e72] [cursor=pointer]:
+            - img "Instagram" [ref=e73]
+          - button "Twitter" [ref=e76] [cursor=pointer]:
+            - img "Twitter" [ref=e77]
+          - button "Tiktok" [ref=e80] [cursor=pointer]:
+            - img "Tiktok" [ref=e81]
+          - button "Youtube" [ref=e84] [cursor=pointer]:
+            - img "Youtube" [ref=e85]
+          - button "Linked In" [ref=e88] [cursor=pointer]:
+            - img "Linked In" [ref=e89]
+  - status [ref=e90]
+  - generic [ref=e91]:
+    - button "Live Chat" [ref=e92] [cursor=pointer]
+    - iframe [ref=e93]:
+      - img [ref=f12e5] [cursor=pointer]
+  - generic:
+    - dialog "Privacy" [ref=e95]:
+      - generic [ref=e96]:
+        - generic:
+          - generic [ref=e99]:
+            - text: We and our partners use tracking technologies like cookies to collect and share information about use of the site, including for marketing purposes. To opt out of marketing cookies, click reject marketing cookies.
+            - link "More information about our cookie policy, opens in a new tab" [ref=e100] [cursor=pointer]:
+              - /url: https://www.optimum.com/cookie-policy
+              - text: Cookie Policy.
+          - generic [ref=e102]:
+            - button "Reject Marketing Cookies" [ref=e103] [cursor=pointer]
+            - button "Continue without changes" [ref=e104] [cursor=pointer]
+      - button "Close" [ref=e106] [cursor=pointer]: ✕
+    - text: ✕ Manage Preferences

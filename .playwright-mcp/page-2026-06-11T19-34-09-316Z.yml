@@ -1,0 +1,117 @@
+- main [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - img "Optimum" [ref=e7]
+      - generic [ref=e8]:
+        - img [ref=e10]
+        - img [ref=e13]
+    - generic [ref=e21]:
+      - heading "Pick your Internet speed" [level=1] [ref=e22]
+      - generic [ref=e23]:
+        - img [ref=e24]
+        - paragraph [ref=e27]:
+          - text: Save $5/mo. on any internet plan — just provide your
+          - strong [ref=e28]: .edu
+          - text: email on the contact page.
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - img [ref=e31]
+          - text: 5-year price guarantee
+        - generic [ref=e33]:
+          - img [ref=e34]
+          - text: Free Installation
+        - generic [ref=e37]:
+          - img [ref=e38]
+          - text: Equipment Included
+      - generic [ref=e40]:
+        - article [ref=e41]:
+          - img [ref=e43]
+          - heading "300 Mbps Internet" [level=2] [ref=e48]
+          - generic [ref=e49]:
+            - text: $25
+            - generic [ref=e50]: /mo.
+          - paragraph [ref=e51]: with Auto Pay & Paperless Bill
+          - paragraph [ref=e52]:
+            - img [ref=e53]
+            - text: 5-year price guarantee
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - text: HBO
+              - generic [ref=e57]: Max
+            - paragraph [ref=e58]:
+              - text: "HBO Max Basic with Ads plan: 12 months included"
+              - link "See details" [ref=e59] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e60]:
+            - link "Details" [ref=e61] [cursor=pointer]:
+              - /url: "#"
+            - link "Broadband Facts" [ref=e62] [cursor=pointer]:
+              - /url: "#"
+          - button "Select" [ref=e63] [cursor=pointer]
+        - article [ref=e64]:
+          - img [ref=e66]
+          - heading "1 Gig Fiber Internet" [level=2] [ref=e71]
+          - generic [ref=e72]:
+            - text: $45
+            - generic [ref=e73]: /mo.
+            - generic [ref=e74]: $129.99/mo.
+          - paragraph [ref=e75]: with Auto Pay & Paperless Bill
+          - paragraph [ref=e76]:
+            - img [ref=e77]
+            - text: 5-year price guarantee
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - text: HBO
+              - generic [ref=e81]: Max
+            - paragraph [ref=e82]:
+              - text: "HBO Max Basic with Ads plan: 12 months included"
+              - link "See details" [ref=e83] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e84]:
+            - link "Details" [ref=e85] [cursor=pointer]:
+              - /url: "#"
+            - link "Broadband Facts" [ref=e86] [cursor=pointer]:
+              - /url: "#"
+          - button "Select" [ref=e87]
+      - paragraph [ref=e91]: Wired connection speeds. WiFi speeds may vary.
+      - generic [ref=e92]: TV (optional)
+      - paragraph [ref=e93]:
+        - img [ref=e94]
+        - text: Save $10/mo. on Internet when you add TV
+      - generic [ref=e96]:
+        - article [ref=e97]:
+          - generic [ref=e98]: Most popular
+          - img [ref=e100]
+          - heading "Entertainment TV" [level=2] [ref=e102]
+          - generic [ref=e103]:
+            - text: $30
+            - generic [ref=e104]: /mo.
+          - paragraph [ref=e105]: 125+ channels
+          - list [ref=e106]:
+            - listitem [ref=e107]: Local channels & news
+            - listitem [ref=e108]: Sports & entertainment
+            - listitem [ref=e109]: Free DVR included
+          - link "Details" [ref=e111] [cursor=pointer]:
+            - /url: "#"
+          - button "Add TV" [ref=e112]
+        - article [ref=e113]:
+          - img [ref=e115]
+          - heading "Everything TV" [level=2] [ref=e117]
+          - generic [ref=e118]:
+            - text: $70
+            - generic [ref=e119]: /mo.
+          - paragraph [ref=e120]: 340+ channels
+          - list [ref=e121]:
+            - listitem [ref=e122]: Everything in Entertainment
+            - listitem [ref=e123]: Premium movie channels
+            - listitem [ref=e124]: Regional sports networks
+          - link "Details" [ref=e126] [cursor=pointer]:
+            - /url: "#"
+          - button "Add TV" [ref=e127]
+    - generic [ref=e128]:
+      - generic [ref=e129]:
+        - strong [ref=e130]: $130.00/mo.
+        - button "Details" [ref=e131] [cursor=pointer]:
+          - text: Details
+          - img [ref=e132]
+      - button "Continue" [ref=e134] [cursor=pointer]

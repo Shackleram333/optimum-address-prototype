@@ -1,0 +1,18 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - img "Optimum" [ref=e6]
+  - main [ref=e10]:
+    - generic [ref=e11]:
+      - heading "See if Optimum is available for your home" [level=1] [ref=e12]
+      - textbox [ref=e15]:
+        - /placeholder: 123 Main St, Anytown, USA 12345
+      - button "Find plans" [ref=e16] [cursor=pointer]
+    - article [ref=e18]:
+      - generic [ref=e20]:
+        - paragraph [ref=e21]: OPTIMUM FIBER INTERNET
+        - heading "Famously Fast Fiber" [level=2] [ref=e22]
+        - paragraph [ref=e23]: Experience fast speeds and low latency for everything you do — now with a 5 year price lock.
+        - generic [ref=e24]:
+          - button "Find plans" [ref=e25]
+          - link "Terms" [ref=e26] [cursor=pointer]:
+            - /url: "#"

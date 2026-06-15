@@ -106,16 +106,23 @@ const ADDRESS_SUGGESTIONS = [
   { line1: "1111 Stewart Street", line2: "Bethpage, NY 11714" },
 ].map((s) => ({ ...s, value: `${s.line1}, ${s.line2}` }));
 
-// Figma unit picker: floors 1–14, four units each (A–D) = 56 units.
-const UNIT_OPTIONS = (() => {
+// Figma unit picker: four units per floor (A–D). The list length matches the
+// selected building's advertised unit count so the dropdown count agrees with
+// the "(N units...)" label. Default to 56 (floors 1–14) when no count is given.
+function buildUnitOptions(count) {
+  const total = Number(count) > 0 ? Number(count) : 56;
+  const letters = ["A", "B", "C", "D"];
   const units = [];
-  for (let floor = 1; floor <= 14; floor++) {
-    for (const letter of ["A", "B", "C", "D"]) {
-      units.push(`Apt ${floor}${letter}`);
-    }
+  for (let i = 0; i < total; i++) {
+    const floor = Math.floor(i / letters.length) + 1;
+    units.push(`Apt ${floor}${letters[i % letters.length]}`);
   }
   return units;
-})();
+}
+
+function unitOptionsFor(suggestion) {
+  return buildUnitOptions(suggestion && suggestion.units);
+}
 
 // The intended/default target address for this flow. In this version the
 // customer must actually type it (the keyboard behaves normally); it's kept here
@@ -150,9 +157,13 @@ function selectionComplete() {
   return !!selectedSuggestion && (!isMDU(selectedSuggestion) || !!selectedUnit);
 }
 
+// Sentinel for the "I don't see my unit here" option — lets the flow proceed on
+// the building address without a specific apartment.
+const UNIT_NONE = "__none__";
+
 function fullSelectedAddress() {
   if (!selectedSuggestion) return "";
-  if (isMDU(selectedSuggestion) && selectedUnit) {
+  if (isMDU(selectedSuggestion) && selectedUnit && selectedUnit !== UNIT_NONE) {
     return `${selectedSuggestion.line1}, ${selectedUnit}, ${selectedSuggestion.line2}`;
   }
   return selectedSuggestion.value;
@@ -176,7 +187,7 @@ function selectSuggestion(suggestion) {
 
   if (isMDU(suggestion)) {
     // Building selected → show inline unit picker; CTA becomes "Select a unit".
-    renderUnitRows(UNIT_OPTIONS);
+    renderUnitRows(unitOptionsFor(suggestion));
     setDropdownMode("units");
     setFocusState(true);
     keyboardPinned = true;
@@ -250,7 +261,14 @@ function updateDropdownMaxHeight() {
   const unitsMode = dropdown.classList.contains("dropdown-units");
   let boundaryTop;
   if (unitsMode) {
-    boundaryTop = phoneRect.bottom;
+    if (isTouchDevice) {
+      // Clamp to the visible viewport height (window.innerHeight is stable and
+      // doesn't shrink while the keyboard dismisses, unlike visualViewport),
+      // leaving a gap so the last rows clear the browser's bottom URL bar.
+      boundaryTop = Math.min(phoneRect.bottom, window.innerHeight) - 72;
+    } else {
+      boundaryTop = phoneRect.bottom;
+    }
   } else if (isTouchDevice) {
     // The OS keyboard overlays roughly the lower half of the screen on phones.
     boundaryTop = window.innerHeight * 0.52;
@@ -374,6 +392,12 @@ function renderUnitRows(units) {
     row.innerHTML = `<span>${unit}</span>`;
     dropdownRowsHost.appendChild(row);
   });
+  const noneRow = document.createElement("button");
+  noneRow.type = "button";
+  noneRow.className = "dropdown-row unit-row unit-row-none";
+  noneRow.dataset.unitNone = "true";
+  noneRow.innerHTML = `<span>I don't see my unit here</span>`;
+  dropdownRowsHost.appendChild(noneRow);
   dropdown._rows = null;
 }
 
@@ -391,11 +415,19 @@ function setDropdownMode(mode) {
     dropdownTitle.textContent = "Keep typing to see matches...";
   } else if (mode === "units") {
     dropdownTitle.textContent = "Select a unit to continue...";
-    // No typing happens during unit selection — dismiss the OS keyboard so the
-    // unit list can use the full height and show more units at once.
+    // No typing happens during unit selection — dismiss the OS keyboard, but keep
+    // the scroll position from the address search (don't snap back to the top and
+    // re-reveal the header). Keeping `keyboard-open` preserves the scroll height.
     if (isTouchDevice) {
-      phone.classList.remove("keyboard-open");
+      const y = phoneViewport.scrollTop;
       addressInput.blur();
+      const restore = () => {
+        phoneViewport.scrollTo({ top: y });
+        updateDropdownMaxHeight();
+      };
+      window.requestAnimationFrame(restore);
+      window.setTimeout(restore, 60);
+      window.setTimeout(restore, 300);
     }
   } else {
     dropdownTitle.textContent = "Select an address to continue...";
@@ -443,6 +475,12 @@ function showKeyboard(show, focusEl) {
   // but still reserve bottom scroll space so content can be scrolled up above
   // the native keyboard.
   if (isTouchDevice) {
+    // While the inline unit picker is open, keep the reserved scroll height so the
+    // page stays scrolled where the address search left it (header out of view).
+    if (!show && dropdown.classList.contains("dropdown-units")) {
+      updateDropdownMaxHeight();
+      return;
+    }
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
@@ -737,7 +775,7 @@ checkPlansBtn.addEventListener("click", () => {
   // MDU chosen but no unit yet → CTA acts as "Select a unit".
   if (isMDU(selectedSuggestion) && !selectedUnit) {
     setFocusState(true);
-    renderUnitRows(UNIT_OPTIONS);
+    renderUnitRows(unitOptionsFor(selectedSuggestion));
     setDropdownMode("units");
     keyboardPinned = true;
     showKeyboard(false);
@@ -771,7 +809,7 @@ dropdown.addEventListener("click", (event) => {
 
   // Unit pick (inline MDU selection).
   if (row.classList.contains("unit-row")) {
-    selectedUnit = row.dataset.unit;
+    selectedUnit = row.dataset.unitNone === "true" ? UNIT_NONE : row.dataset.unit;
     addressInput.value = fullSelectedAddress();
     syncAddressInputUI();
     updateCtaLabel();
@@ -834,7 +872,7 @@ addressInput.addEventListener("focus", () => {
 
   const v = normalizeQuery(addressInput.value);
   if (isMDU(selectedSuggestion) && !selectedUnit) {
-    renderUnitRows(UNIT_OPTIONS);
+    renderUnitRows(unitOptionsFor(selectedSuggestion));
     setDropdownMode("units");
     showKeyboard(false);
     return;

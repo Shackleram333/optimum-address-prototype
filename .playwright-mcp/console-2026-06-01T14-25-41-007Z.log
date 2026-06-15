@@ -1,0 +1,200 @@
+[       6ms] [LOG] cheqThreat object added to digitalData @ https://www.optimum.com/assets/adobeDTMScript.js:18
+[       7ms] [LOG] cheq_threat_ready event added to dataLayer @ https://www.optimum.com/assets/googleGTMScript.js:18
+[    2579ms] [ERROR] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028) @ https://www.optimum.com/assets/components-D5ewNdnq.js:139
+[    4549ms] [ERROR] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028) @ https://www.optimum.com/assets/components-D5ewNdnq.js:139
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4571ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4572ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4572ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at Sa (https://www.optimum.com/assets/components-D5ewNdnq.js:22:4806)
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45951)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at vp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40006)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:34946)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4572ms] Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:45610)
+    at hf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:40034)
+    at mp (https://www.optimum.com/assets/components-D5ewNdnq.js:24:39962)
+    at ro (https://www.optimum.com/assets/components-D5ewNdnq.js:24:39815)
+    at ou (https://www.optimum.com/assets/components-D5ewNdnq.js:24:36136)
+    at sf (https://www.optimum.com/assets/components-D5ewNdnq.js:24:35084)
+    at q (https://www.optimum.com/assets/components-D5ewNdnq.js:9:1646)
+    at MessagePort.me (https://www.optimum.com/assets/components-D5ewNdnq.js:9:2028)
+[    4577ms] [LOG] Feature flags fetched successfully:  {} @ https://www.optimum.com/assets/route-BDxXlu6Y.js:0
+[    6281ms] [LOG] nullinside dynamic tracking calls @ https://assets.adobedtm.com/5b7063f54823/d35922519083/launch-d0de4539ffe9.min.js:14
+[    6365ms] [WARNING] 🚀 container.buildInfo.environment is deprecated.Please use `container.environment.stage` instead @ https://assets.adobedtm.com/5b7063f54823/d35922519083/launch-d0de4539ffe9.min.js:15
+[   16971ms] [ERROR] Attestation check for Attribution Reporting on https://ara.paa-reporting-advertising.amazon failed. @ https://www.optimum.com/check-availability:0
+[   16973ms] [ERROR] Attestation check for Shared Storage on https://ara.paa-reporting-advertising.amazon failed. @ https://www.optimum.com/check-availability:0
+[252746829ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://c.contentsquare.net/pageview?ex=&pvt=r&cvars=%7B%221%22%3A%5B%22opt%3Aen%3Aresi%3Abuyflow%3Acheck-availability%22%2C%22opt%3Aen%3Aresi%3Abuyflow%3Acheck-availability%22%5D%2C%223%22%3A%5B%2259ee0f8d-4332-4c55-b24e-b0e892c949a5%22%2C%2259ee0f8d-4332-4c55-b24e-b0e892c949a5%22%5D%2C%228%22%3A%5B%22unknown%22%2C%22unknown%22%5D%2C%2212%22%3A%5B%22%2Fhome%22%2C%22%2Fhome%22%5D%7D&cvarp=%7B%221%22%3A%5B%22opt%3Aen%3Aresi%3Abuyflow%3Acheck-availability%22%2C%22opt%3Aen%3Aresi%3Abuyflow%3Acheck-availability%22%5D%2C%223%22%3A%5B%2259ee0f8d-4332-4c55-b24e-b0e892c949a5%22%2C%2259ee0f8d-4332-4c55-b24e-b0e892c949a5%22%5D%2C%228%22%3A%5B%22unknown%22%2C%22unknown%22%5D%2C%2212%22%3A%5B%22%2Fhome%22%2C%22%2Fhome%22%5D%7D&la=en-US&uc=0&url=https%3A%2F%2Fwww.optimum.com%2Fcheck-availability&dr=&dw=1200&dh=970&ww=1200&wh=898&sw=2560&sh=1440&uu=fc824a30-0c07-abf8-bf85-1d08720fe6ab&sn=4&hd=1780459010&v=15.228.3&pid=5158&pn=1&ct=0:0
+[252746831ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://c.contentsquare.net/v2/events?uu=fc824a30-0c07-abf8-bf85-1d08720fe6ab&sn=3&hd=1780409578&v=15.228.3&pid=5158&pn=1&str=12&di=709&dc=4978&fl=4978&sr=93&mdh=970&ct=2:0
+[252746838ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://k-aus1.contentsquare.net/v2/recording?rt=5&rst=1780409578477&let=1780409580663&v=15.228.3&pid=5158&pn=1&sn=3&uu=fc824a30-0c07-abf8-bf85-1d08720fe6ab&ri=1&ct=2:0
+[252746840ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://k-aus1.contentsquare.net/v2/recording?rt=5&rst=1780459012470&let=1780459012587&v=15.228.3&pid=5158&pn=1&sn=4&uu=fc824a30-0c07-abf8-bf85-1d08720fe6ab&ri=1&ct=2:0
+[252746846ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://p.clarity.ms/collect:0
+[252746847ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://p.clarity.ms/collect:0
+[252746855ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ https://p.clarity.ms/collect:0
+[253710275ms] [ERROR] Failed to load resource: net::ERR_DNS_NO_MATCHING_SUPPORTED_ALPN @ https://p.clarity.ms/collect:0

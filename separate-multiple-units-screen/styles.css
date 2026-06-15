@@ -81,6 +81,7 @@ h1 { margin:20px 0 16px; color:var(--ink); font-size:24px; line-height:30px; let
 }
 .apt-dropdown-row { min-height:52px; grid-template-columns:1fr; padding:14px 16px; }
 .apt-dropdown-row span { font-weight:400; white-space:nowrap; display:block; }
+.apt-dropdown-row-none span { color:#0066de; font-weight:500; }
 
 .hero-wrap { padding:0 16px 32px; }
 .hero-card { position:relative; z-index:1; border-radius:16px; overflow:hidden; width:382px; height:540px; }

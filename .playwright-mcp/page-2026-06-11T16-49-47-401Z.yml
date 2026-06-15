@@ -1,0 +1,92 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - img "Optimum" [ref=e5]
+    - main [ref=e6]:
+      - generic [ref=e7]:
+        - paragraph [ref=e8]:
+          - link "1111 Stewart Ave, Bethpage, NY" [ref=e9] [cursor=pointer]:
+            - /url: "#"
+        - heading "Multiple apartment units found" [level=1] [ref=e10]
+        - textbox [active] [ref=e12]:
+          - /placeholder: Select apartment or unit
+        - generic [ref=e13]:
+          - button "Apt 1A" [ref=e14]:
+            - generic [ref=e15]: Apt 1A
+          - button "Apt 1B" [ref=e16]:
+            - generic [ref=e17]: Apt 1B
+          - button "Apt 1C" [ref=e18]:
+            - generic [ref=e19]: Apt 1C
+          - button "Apt 1D" [ref=e20]:
+            - generic [ref=e21]: Apt 1D
+          - button "Apt 2A" [ref=e22]:
+            - generic [ref=e23]: Apt 2A
+          - button "Apt 2B" [ref=e24]:
+            - generic [ref=e25]: Apt 2B
+          - button "Apt 2C" [ref=e26]:
+            - generic [ref=e27]: Apt 2C
+          - button "Apt 2D" [ref=e28]:
+            - generic [ref=e29]: Apt 2D
+          - button "Apt 3A" [ref=e30]:
+            - generic [ref=e31]: Apt 3A
+          - button "Apt 3B" [ref=e32]:
+            - generic [ref=e33]: Apt 3B
+          - button "Apt 3C" [ref=e34]:
+            - generic [ref=e35]: Apt 3C
+          - button "Apt 3D" [ref=e36]:
+            - generic [ref=e37]: Apt 3D
+          - button "Unit 4" [ref=e38]:
+            - generic [ref=e39]: Unit 4
+          - button "Unit 5" [ref=e40]:
+            - generic [ref=e41]: Unit 5
+        - button "Find plans" [ref=e42] [cursor=pointer]
+      - generic [ref=e43]:
+        - separator [ref=e44]
+        - paragraph [ref=e45]: Pricing, offers, and terms subject to change and discontinuance w/o notice. All trademarks and service marks are the property of their respective owner.
+        - paragraph [ref=e46]: © 2026 CSC Holdings, LLC.
+        - link "About Optimum" [ref=e47] [cursor=pointer]:
+          - /url: "#"
+        - link "Disclaimers" [ref=e48] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms" [ref=e49] [cursor=pointer]:
+          - /url: "#"
+        - link "Privacy" [ref=e50] [cursor=pointer]:
+          - /url: "#"
+  - generic [ref=e52]:
+    - generic [ref=e53]:
+      - generic [ref=e54]:
+        - button [ref=e55] [cursor=pointer]: "1"
+        - button [ref=e56] [cursor=pointer]: "2"
+        - button [ref=e57] [cursor=pointer]: "3"
+        - button [ref=e58] [cursor=pointer]: "4"
+        - button [ref=e59] [cursor=pointer]: "5"
+        - button [ref=e60] [cursor=pointer]: "6"
+        - button [ref=e61] [cursor=pointer]: "7"
+        - button [ref=e62] [cursor=pointer]: "8"
+        - button [ref=e63] [cursor=pointer]: "9"
+        - button [ref=e64] [cursor=pointer]: "0"
+      - generic [ref=e65]:
+        - button [ref=e66] [cursor=pointer]: "-"
+        - button [ref=e67] [cursor=pointer]: /
+        - button [ref=e68] [cursor=pointer]: ":"
+        - button [ref=e69] [cursor=pointer]: ;
+        - button [ref=e70] [cursor=pointer]: (
+        - button [ref=e71] [cursor=pointer]: )
+        - button [ref=e72] [cursor=pointer]: $
+        - button [ref=e73] [cursor=pointer]: "&"
+        - button [ref=e74] [cursor=pointer]: "@"
+        - button [ref=e75] [cursor=pointer]: "\""
+      - generic [ref=e76]:
+        - button [ref=e77] [cursor=pointer]: "#+="
+        - button [ref=e78] [cursor=pointer]: .
+        - button [ref=e79] [cursor=pointer]: ","
+        - button [ref=e80] [cursor=pointer]: "?"
+        - button [ref=e81] [cursor=pointer]: "!"
+        - button [ref=e82] [cursor=pointer]: "'"
+        - button [ref=e83] [cursor=pointer]: ⌫
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - button [ref=e86] [cursor=pointer]: ABC
+        - button [ref=e87] [cursor=pointer]: space
+        - button [ref=e88] [cursor=pointer]: return
+      - generic [ref=e89]: 🎤
