@@ -16,16 +16,16 @@ body {
 .phone.keyboard-open .phone-viewport { padding-bottom:365px; }
 @media (pointer: coarse) {
   #keyboard { display:none !important; }
-  /* On a real phone the window scrolls (not .phone-viewport), so sticky never
-     pins. Fix the quotes summary bar to the bottom of the screen instead. */
-  .quotes-scroll { padding-bottom:108px; }
+  /* On a real phone the window scrolls (not .phone-viewport). The summary bar
+     lives outside the scroll container (a direct child of .phone), so fixed
+     pins it to the bottom of the screen without iOS's overflow-ancestor bug. */
+  .quotes-scroll { padding-bottom:120px; }
   .quotes-cart {
     position:fixed;
     left:50%;
     transform:translateX(-50%);
     width:min(414px, 100%);
     bottom:0;
-    z-index:60;
     padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
   }
 }
@@ -469,7 +469,7 @@ h1 { margin:20px 0 16px; color:var(--ink); font-size:18px; line-height:24px; let
 .buyflow-tracker .bt-seg { height:6px; border-radius:6px; background:#e4e8ef; flex:1; }
 .buyflow-tracker .bt-seg.bt-active { background:var(--orange); }
 
-.quotes-scroll { padding:0 0 24px; }
+.quotes-scroll { padding:0 0 100px; }
 .quotes-title { margin:20px 20px 0; font-size:24px; line-height:28px; font-weight:700; color:var(--ink); letter-spacing:.2px; }
 
 .edu-banner { margin:16px 20px 0; display:flex; gap:12px; align-items:flex-start; background:#e7f6ec; border-radius:10px; padding:14px 16px; }
@@ -510,7 +510,8 @@ h1 { margin:20px 0 16px; color:var(--ink); font-size:18px; line-height:24px; let
 .quotes-subhead { margin:28px 20px 0; font-size:20px; line-height:24px; font-weight:700; color:var(--ink); }
 .quotes-promo { margin:12px 20px 0; display:flex; align-items:center; gap:8px; font-size:14px; line-height:18px; color:var(--ink); font-weight:600; }
 
-.quotes-cart { position:sticky; bottom:0; background:#fff; box-shadow:0 -6px 20px rgb(16 24 40 / 10%); padding:16px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.quotes-cart { display:none; position:absolute; left:0; right:0; bottom:0; background:#fff; box-shadow:0 -6px 20px rgb(16 24 40 / 10%); padding:16px 20px; align-items:center; justify-content:space-between; gap:16px; z-index:60; }
+body[data-page="quotes"] .quotes-cart { display:flex; }
 .cart-total strong { font-size:24px; color:var(--ink); display:block; line-height:28px; }
 .cart-total strong span { font-size:16px; }
 .cart-details { border:0; background:none; padding:0; margin-top:2px; color:#0066de; font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:4px; cursor:pointer; }

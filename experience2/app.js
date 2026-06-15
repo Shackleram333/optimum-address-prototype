@@ -61,6 +61,7 @@ function normalizePageName(rawPage) {
 
 function setCurrentPage(page, updateUrl = true) {
   currentPage = page;
+  document.body.dataset.page = page;
   if (updateUrl) {
     setPageInUrl(page);
   }
@@ -707,6 +708,15 @@ quotesSection.addEventListener("click", () => {
     showEndPrototype();
   }
 });
+
+const quotesCart = document.getElementById("quotesCart");
+if (quotesCart) {
+  quotesCart.addEventListener("click", () => {
+    if (currentPage === "quotes") {
+      showEndPrototype();
+    }
+  });
+}
 
 endPrototype.addEventListener("click", (event) => {
   event.stopPropagation();
