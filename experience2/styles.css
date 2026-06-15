@@ -72,7 +72,7 @@ body {
   mask-position:center;
   mask-size:contain;
 }
-.icon-menu { -webkit-mask-image:url("./assets/icon-menu.svg"); mask-image:url("./assets/icon-menu.svg"); }
+.icon-menu { -webkit-mask-image:url("./assets/icon-menu.svg?v=20260615x"); mask-image:url("./assets/icon-menu.svg?v=20260615x"); }
 .icon-chat { -webkit-mask-image:url("./assets/icon-chat.svg"); mask-image:url("./assets/icon-chat.svg"); }
 .icon-user { -webkit-mask-image:url("./assets/icon-user.svg"); mask-image:url("./assets/icon-user.svg"); }
 #menuIcon { opacity:.95; }
