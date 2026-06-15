@@ -86,6 +86,11 @@ const ADDRESS_SUGGESTIONS = [
   { line1: "111 8th Avenue", line2: "New York, NY 11714", units: 6 },
   { line1: "111 Livingston Street", line2: "Brooklyn, NY 11900" },
   { line1: "111 John Street", line2: "New York, NY 11940" },
+  { line1: "1111 6th Avenue", line2: "New York, NY, USA", figma: true },
+  { line1: "1111 Secaucus Road", line2: "Secaucus, NJ, USA", figma: true },
+  { line1: "1111 73rd Street", line2: "North Bergen, NJ, USA", figma: true },
+  { line1: "1111 2nd Avenue", line2: "New York, NY, USA", figma: true },
+  { line1: "1111 Southern Boulevard", line2: "The Bronx, NY, USA", figma: true },
   { line1: "1111 Stewart Ave", line2: "Bethpage, NY 11714", units: 56 },
   { line1: "1115 Stewart Ave", line2: "Bethpage, NY 11714" },
   { line1: "1119 Stewart Ave", line2: "Bethpage, NY 11714" },
@@ -93,8 +98,6 @@ const ADDRESS_SUGGESTIONS = [
   { line1: "1111 Stewart Pl", line2: "Bethpage, NY 11714" },
   { line1: "1111 Stewart Place", line2: "Bethpage, NY 11714" },
   { line1: "1111 Stewart Street", line2: "Bethpage, NY 11714" },
-  { line1: "1111 Amsterdam Avenue", line2: "New York, NY 10022", units: 47 },
-  { line1: "1111 Franklin Avenue", line2: "Garden City, NY 11212" },
 ].map((s) => ({ ...s, value: `${s.line1}, ${s.line2}` }));
 
 // Figma unit picker: floors 1–14, four units each (A–D) = 56 units.
@@ -283,19 +286,19 @@ function getFilteredSuggestions(query) {
     suggestion.line1.toLowerCase().includes(q) ||
     suggestion.line2.toLowerCase().includes(q);
 
-  // Hold back the "Stewart" demo addresses until the user starts the street name
-  // ("1111 S"), so they don't surface on the bare house number alone.
-  const STEWART_GATE = "1111 s";
-  const primaryMatches = ADDRESS_SUGGESTIONS.filter((suggestion) => {
-    if (!matchesQuery(suggestion, query)) {
-      return false;
-    }
-    const isStewart = suggestion.line1.toLowerCase().includes("stewart");
-    if (isStewart && !query.startsWith(STEWART_GATE)) {
-      return false;
-    }
-    return true;
-  });
+  // "1111 S" state: show the curated Figma list. These addresses don't all
+  // literally contain "1111 s", and the target "Stewart" results stay hidden
+  // until the query is specific enough ("1111 St").
+  if (query.startsWith("1111") && !query.startsWith("1111 st")) {
+    const figmaMatches = ADDRESS_SUGGESTIONS.filter((s) => s.figma);
+    return query.length <= "1111 s".length
+      ? figmaMatches
+      : figmaMatches.filter((s) => matchesQuery(s, query));
+  }
+
+  const primaryMatches = ADDRESS_SUGGESTIONS.filter((suggestion) =>
+    matchesQuery(suggestion, query)
+  );
   return primaryMatches.slice(0, 6);
 }
 
