@@ -408,11 +408,16 @@ function setDropdownMode(mode) {
     dropdownTitle.textContent = "Keep typing to see matches...";
   } else if (mode === "units") {
     dropdownTitle.textContent = "Select a unit to continue...";
-    // No typing happens during unit selection — dismiss the OS keyboard so the
-    // unit list can use the full height and show more units at once.
+    // No typing happens during unit selection — dismiss the OS keyboard, but keep
+    // the scroll position from the address search (don't snap back to the top and
+    // re-reveal the header). Keeping `keyboard-open` preserves the scroll height.
     if (isTouchDevice) {
-      phone.classList.remove("keyboard-open");
+      const y = phoneViewport.scrollTop;
       addressInput.blur();
+      const restore = () => phoneViewport.scrollTo({ top: y });
+      window.requestAnimationFrame(restore);
+      window.setTimeout(restore, 60);
+      window.setTimeout(restore, 300);
     }
   } else {
     dropdownTitle.textContent = "Select an address to continue...";
@@ -460,6 +465,12 @@ function showKeyboard(show, focusEl) {
   // but still reserve bottom scroll space so content can be scrolled up above
   // the native keyboard.
   if (isTouchDevice) {
+    // While the inline unit picker is open, keep the reserved scroll height so the
+    // page stays scrolled where the address search left it (header out of view).
+    if (!show && dropdown.classList.contains("dropdown-units")) {
+      updateDropdownMaxHeight();
+      return;
+    }
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
