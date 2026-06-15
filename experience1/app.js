@@ -226,6 +226,11 @@ function setFocusState(active) {
   addressField.classList.toggle("focused", active);
   topScrim.classList.toggle("hidden", !active);
   bottomScrim.classList.add("hidden");
+  if (active) {
+    // Anchor the dimming scrim to the top of the hero so it always covers the
+    // same area regardless of headline height (which changes the layout above).
+    topScrim.style.top = `${heroSection.offsetTop}px`;
+  }
 }
 
 function updateDropdownPlacement() {
