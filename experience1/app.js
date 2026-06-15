@@ -283,9 +283,19 @@ function getFilteredSuggestions(query) {
     suggestion.line1.toLowerCase().includes(q) ||
     suggestion.line2.toLowerCase().includes(q);
 
-  const primaryMatches = ADDRESS_SUGGESTIONS.filter((suggestion) =>
-    matchesQuery(suggestion, query)
-  );
+  // Hold back the "Stewart" demo addresses until the query is specific enough
+  // ("1111 St"), so they don't surface on the first few digits.
+  const STEWART_GATE = "1111 st";
+  const primaryMatches = ADDRESS_SUGGESTIONS.filter((suggestion) => {
+    if (!matchesQuery(suggestion, query)) {
+      return false;
+    }
+    const isStewart = suggestion.line1.toLowerCase().includes("stewart");
+    if (isStewart && !query.startsWith(STEWART_GATE)) {
+      return false;
+    }
+    return true;
+  });
   return primaryMatches.slice(0, 6);
 }
 
