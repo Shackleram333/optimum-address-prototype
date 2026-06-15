@@ -73,8 +73,8 @@ h1 { margin:20px 0 16px; color:var(--ink); font-size:18px; line-height:24px; let
 .text-input.error { border:1.5px solid var(--err); background:#fff4f3; }
 .text-input.error .pin-icon { content:url("./assets/icon-pin-red.svg"); }
 .pin-icon {
-  width:22px;
-  height:28px;
+  width:18px;
+  height:23px;
   object-fit:contain;
 }
 .pin-mini {
