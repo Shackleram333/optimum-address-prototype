@@ -136,10 +136,6 @@ const APARTMENT_OPTIONS = [
   "Unit 5",
 ];
 
-function isMDU(suggestion) {
-  return !!(suggestion && suggestion.units);
-}
-
 function insertChar(ch) {
   if (!ch || !activeInput) return;
   activeInput.value += ch;
@@ -320,12 +316,9 @@ function renderDropdownRows(rows) {
     row.type = "button";
     row.className = "dropdown-row";
     row.dataset.index = String(index);
-    const label = isMDU(suggestion)
-      ? `${suggestion.line1} <em class="unit-count">(${suggestion.units} units...)</em>`
-      : suggestion.line1;
     row.innerHTML = `
       <img class="pin-mini" src="./assets/icon-pin-blue.svg" alt="" />
-      <span>${label}</span><small>${suggestion.line2}</small>
+      <span>${suggestion.line1}</span><small>${suggestion.line2}</small>
     `;
     dropdownRowsHost.appendChild(row);
   });
