@@ -106,16 +106,23 @@ const ADDRESS_SUGGESTIONS = [
   { line1: "1111 Stewart Street", line2: "Bethpage, NY 11714" },
 ].map((s) => ({ ...s, value: `${s.line1}, ${s.line2}` }));
 
-// Figma unit picker: floors 1–14, four units each (A–D) = 56 units.
-const UNIT_OPTIONS = (() => {
+// Figma unit picker: four units per floor (A–D). The list length matches the
+// selected building's advertised unit count so the dropdown count agrees with
+// the "(N units...)" label. Default to 56 (floors 1–14) when no count is given.
+function buildUnitOptions(count) {
+  const total = Number(count) > 0 ? Number(count) : 56;
+  const letters = ["A", "B", "C", "D"];
   const units = [];
-  for (let floor = 1; floor <= 14; floor++) {
-    for (const letter of ["A", "B", "C", "D"]) {
-      units.push(`Apt ${floor}${letter}`);
-    }
+  for (let i = 0; i < total; i++) {
+    const floor = Math.floor(i / letters.length) + 1;
+    units.push(`Apt ${floor}${letters[i % letters.length]}`);
   }
   return units;
-})();
+}
+
+function unitOptionsFor(suggestion) {
+  return buildUnitOptions(suggestion && suggestion.units);
+}
 
 // The intended/default target address for this flow. In this version the
 // customer must actually type it (the keyboard behaves normally); it's kept here
@@ -176,7 +183,7 @@ function selectSuggestion(suggestion) {
 
   if (isMDU(suggestion)) {
     // Building selected → show inline unit picker; CTA becomes "Select a unit".
-    renderUnitRows(UNIT_OPTIONS);
+    renderUnitRows(unitOptionsFor(suggestion));
     setDropdownMode("units");
     setFocusState(true);
     keyboardPinned = true;
@@ -737,7 +744,7 @@ checkPlansBtn.addEventListener("click", () => {
   // MDU chosen but no unit yet → CTA acts as "Select a unit".
   if (isMDU(selectedSuggestion) && !selectedUnit) {
     setFocusState(true);
-    renderUnitRows(UNIT_OPTIONS);
+    renderUnitRows(unitOptionsFor(selectedSuggestion));
     setDropdownMode("units");
     keyboardPinned = true;
     showKeyboard(false);
@@ -834,7 +841,7 @@ addressInput.addEventListener("focus", () => {
 
   const v = normalizeQuery(addressInput.value);
   if (isMDU(selectedSuggestion) && !selectedUnit) {
-    renderUnitRows(UNIT_OPTIONS);
+    renderUnitRows(unitOptionsFor(selectedSuggestion));
     setDropdownMode("units");
     showKeyboard(false);
     return;
