@@ -637,6 +637,16 @@ endPrototype.addEventListener("click", (event) => {
   restartPrototype();
 });
 
+// Block paste / drag-and-drop into the address field so input always flows
+// through the demo's "type-anything-fills-the-target-address" logic.
+addressInput.addEventListener("paste", (event) => event.preventDefault());
+addressInput.addEventListener("drop", (event) => event.preventDefault());
+addressInput.addEventListener("beforeinput", (event) => {
+  if (event.inputType === "insertFromPaste" || event.inputType === "insertFromDrop") {
+    event.preventDefault();
+  }
+});
+
 addressInput.addEventListener("input", (event) => {
   // Native (phone) typing: any key advances the demo target address, so tapping
   // the number pad still fills "1111 Stewart Ave". (Fake-keyboard taps dispatch a
