@@ -16,6 +16,18 @@ body {
 .phone.keyboard-open .phone-viewport { padding-bottom:365px; }
 @media (pointer: coarse) {
   #keyboard { display:none !important; }
+  /* On a real phone the window scrolls (not .phone-viewport), so sticky never
+     pins. Fix the quotes summary bar to the bottom of the screen instead. */
+  .quotes-scroll { padding-bottom:108px; }
+  .quotes-cart {
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(414px, 100%);
+    bottom:0;
+    z-index:60;
+    padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  }
 }
 .section { padding-inline:24px; }
 .hidden { display:none !important; }
