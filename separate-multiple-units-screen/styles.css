@@ -69,6 +69,8 @@ body {
 .icon-menu { -webkit-mask-image:url("./assets/icon-menu.svg?v=20260615b"); mask-image:url("./assets/icon-menu.svg?v=20260615b"); }
 .icon-chat { -webkit-mask-image:url("./assets/icon-chat.svg"); mask-image:url("./assets/icon-chat.svg"); }
 .icon-user { -webkit-mask-image:url("./assets/icon-user.svg"); mask-image:url("./assets/icon-user.svg"); }
+/* Chat + user glyphs read heavier than the thin hamburger; trim them slightly to match. */
+.header-actions .header-icon { width:21px; height:21px; }
 #menuIcon { opacity:.95; }
 
 .address-section { padding-top:14px; padding-bottom:34px; }

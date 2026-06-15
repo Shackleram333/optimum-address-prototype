@@ -383,13 +383,13 @@ function setHeaderVariant(variant) {
   if (variant === "white") {
     header.classList.remove("header-blue");
     header.classList.add("header-white");
-    headerLogo.src = "./assets/logo-black.png";
+    headerLogo.src = "./assets/logo-optimum.png";
     headerLogo.style.height = "24px";
     return;
   }
   header.classList.remove("header-white");
   header.classList.add("header-blue");
-  headerLogo.src = "./assets/logo-white.png";
+  headerLogo.src = "./assets/logo-optimum-white.png";
   headerLogo.style.height = "27px";
 }
 
