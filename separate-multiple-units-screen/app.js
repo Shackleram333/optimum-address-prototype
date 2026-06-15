@@ -447,10 +447,12 @@ function updateAptDropdownMaxHeight() {
   const dropdownRect = aptDropdown.getBoundingClientRect();
   let boundaryTop;
   if (isTouchDevice) {
-    // Clamp to the visible viewport height (window.innerHeight is stable and
-    // doesn't shrink while the keyboard dismisses, unlike visualViewport),
-    // leaving a gap so the last rows clear the browser's bottom URL bar.
-    boundaryTop = Math.min(phoneRect.bottom, window.innerHeight) - 72;
+    // The visual viewport already excludes the on-screen keyboard AND the
+    // browser's URL bar, so clamping to it keeps the whole list (and its last
+    // rows) visible whether the keyboard is up or dismissed.
+    const vv = window.visualViewport;
+    const visibleBottom = vv ? vv.offsetTop + vv.height : window.innerHeight - 72;
+    boundaryTop = Math.min(phoneRect.bottom, visibleBottom) - 8;
   } else {
     boundaryTop = keyboard.classList.contains("hidden")
       ? phoneRect.bottom
@@ -1031,6 +1033,14 @@ phoneViewport.addEventListener("scroll", syncDropdownPlacementIfVisible, { passi
 window.addEventListener("resize", updateAptDropdownMaxHeight);
 window.addEventListener("scroll", updateAptDropdownMaxHeight, { passive: true });
 phoneViewport.addEventListener("scroll", updateAptDropdownMaxHeight, { passive: true });
+if (window.visualViewport) {
+  const onVisualViewportChange = () => {
+    updateDropdownMaxHeight();
+    updateAptDropdownMaxHeight();
+  };
+  window.visualViewport.addEventListener("resize", onVisualViewportChange);
+  window.visualViewport.addEventListener("scroll", onVisualViewportChange, { passive: true });
+}
 applyKeyboardLayout(keyboardMode);
 
 const requestedPage = getRequestedPageFromUrl();
