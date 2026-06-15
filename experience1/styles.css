@@ -65,7 +65,7 @@ body {
 .icon-user { -webkit-mask-image:url("./assets/icon-user.svg"); mask-image:url("./assets/icon-user.svg"); }
 #menuIcon { opacity:.95; }
 
-.address-section { padding-top:14px; padding-bottom:24px; }
+.address-section { padding-top:14px; padding-bottom:34px; }
 .address-input-wrap { position:relative; height:52px; overflow:visible; }
 h1 { margin:20px 0 16px; color:var(--ink); font-size:18px; line-height:24px; letter-spacing:-.5px; font-weight:700; white-space:nowrap; }
 .text-input { border:1px solid var(--line); border-radius:8px; height:52px; display:flex; align-items:center; gap:8px; padding:0 16px; }
