@@ -35,6 +35,7 @@ const footer = document.getElementById("footer");
 const plansModal = document.getElementById("plansModal");
 const plansModalText = document.getElementById("plansModalText");
 const quotesSection = document.getElementById("quotesSection");
+const endPrototype = document.getElementById("endPrototype");
 
 // Phones / touchscreens use the real OS keyboard; the simulated (Figma) keyboard
 // is only for pointer devices (laptop/desktop) where there is no OS keyboard.
@@ -695,6 +696,38 @@ function enterQuotesStep() {
   phoneViewport.scrollTo({ top: 0, behavior: "auto" });
   setCurrentPage("quotes");
 }
+
+function showEndPrototype() {
+  endPrototype.classList.remove("hidden");
+  endPrototype.setAttribute("aria-hidden", "false");
+}
+
+function hideEndPrototype() {
+  endPrototype.classList.add("hidden");
+  endPrototype.setAttribute("aria-hidden", "true");
+}
+
+function restartPrototype() {
+  hideEndPrototype();
+  addressInput.value = "";
+  selectedAddress = "";
+  selectedApartment = "";
+  syncAddressInputUI();
+  enterAddressStep();
+}
+
+// Last screen (List Quotes): a tap reveals the "End of prototype" overlay; a tap
+// on the overlay restarts the flow from the address step.
+quotesSection.addEventListener("click", () => {
+  if (currentPage === "quotes") {
+    showEndPrototype();
+  }
+});
+
+endPrototype.addEventListener("click", (event) => {
+  event.stopPropagation();
+  restartPrototype();
+});
 
 // Block paste / drag-and-drop into the address field so input always flows
 // through the demo's curated suggestion logic.
