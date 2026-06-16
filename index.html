@@ -83,17 +83,29 @@
         line-height: 21px;
         color: var(--muted);
       }
-      .card-cta {
+      .card-links {
+        display: flex;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .card-link {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        margin-top: 16px;
+        gap: 8px;
+        padding: 10px 18px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
         font-size: 14px;
         font-weight: 600;
         color: #0066de;
+        text-decoration: none;
+        transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
       }
-      .card-cta svg { transition: transform 0.16s ease; }
-      .card:hover .card-cta svg { transform: translateX(3px); }
+      .card-link:hover {
+        background: #f3f7ff;
+        border-color: #c2d4f5;
+        transform: translateY(-1px);
+      }
       footer {
         margin-top: 40px;
         font-size: 12px;
@@ -111,30 +123,42 @@
     </p>
 
     <div class="cards">
-      <a class="card" href="https://shackleram333.github.io/optimum-address-prototype/experience2/">
+      <div class="card">
         <h2>Inline unit selection</h2>
         <p>
           Search for an address and choose the unit directly in the dropdown — no
           separate screen. Uses a standard keyboard with realistic address
           matches.
         </p>
-        <span class="card-cta">
-          Open prototype
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-        </span>
-      </a>
+        <div class="card-links">
+          <a class="card-link" href="https://shackleram333.github.io/optimum-address-prototype/experience2/">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Mobile
+          </a>
+          <a class="card-link" href="https://shackleram333.github.io/optimum-address-prototype/experience2-desktop/">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Desktop
+          </a>
+        </div>
+      </div>
 
-      <a class="card" href="https://shackleram333.github.io/optimum-address-prototype/separate-multiple-units-screen/">
+      <div class="card">
         <h2>Unit selection on its own screen</h2>
         <p>
           Search for an address, then pick the unit on a dedicated apartment
           screen — including an “I don't see my unit here” option.
         </p>
-        <span class="card-cta">
-          Open prototype
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-        </span>
-      </a>
+        <div class="card-links">
+          <a class="card-link" href="https://shackleram333.github.io/optimum-address-prototype/separate-multiple-units-screen/">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Mobile
+          </a>
+          <a class="card-link" href="https://shackleram333.github.io/optimum-address-prototype/separate-multiple-units-screen-desktop/">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Desktop
+          </a>
+        </div>
+      </div>
     </div>
 
     <footer>© 2026 CSC Holdings, LLC. Internal prototype.</footer>
