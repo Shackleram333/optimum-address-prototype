@@ -383,49 +383,6 @@ h1 { margin:20px 0 16px; color:var(--ink); font-size:18px; line-height:24px; let
   width:1px;
   background:rgba(235,235,245,.3);
 }
-/* Floating predictive strip pinned above the native OS keyboard on touch
-   devices (web pages can't inject into the real keyboard's suggestion bar). */
-.mobile-suggest {
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:414px;
-  height:48px;
-  display:flex;
-  align-items:stretch;
-  background:#d3d6dd;
-  border-top:1px solid rgba(0,0,0,.12);
-  box-shadow:0 -2px 10px rgba(0,0,0,.12);
-  z-index:120;
-}
-.mobile-suggest.hidden { display:none; }
-.mobile-suggest-item {
-  flex:1 1 0;
-  min-width:0;
-  border:0;
-  background:transparent;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
-  font-size:15px;
-  font-weight:500;
-  color:#1c1c1e;
-  cursor:pointer;
-  position:relative;
-  padding:0 10px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.mobile-suggest-item:active { background:rgba(0,0,0,.06); }
-.mobile-suggest-item + .mobile-suggest-item::before {
-  content:"";
-  position:absolute;
-  left:0;
-  top:11px;
-  bottom:11px;
-  width:1px;
-  background:rgba(0,0,0,.18);
-}
 .kb-keys {
   display:flex;
   flex-direction:column;

@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260616live3" />
+    <link rel="stylesheet" href="./styles.css?v=20260616live4" />
   </head>
   <body>
     <div class="phone">
@@ -31,7 +31,7 @@
             <div class="address-input-wrap">
               <label id="addressField" class="text-input">
                 <img class="pin-icon" src="./assets/icon-pin-blue.svg" alt="" />
-                <input id="addressInput" type="text" inputmode="text" name="optimum-address-search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore data-form-type="other" placeholder="Enter your home address" />
+                <input id="addressInput" type="text" inputmode="text" name="address" autocomplete="street-address" spellcheck="false" placeholder="Enter your home address" />
                 <button id="clearAddress" class="suffix-button hidden" aria-label="Clear">
                   <img src="./assets/icon-x-light.svg" alt="" />
                 </button>
@@ -244,12 +244,6 @@
         </div>
       </div>
 
-      <div id="mobileSuggest" class="mobile-suggest hidden" aria-hidden="true">
-        <button type="button" class="mobile-suggest-item" data-slot="0"></button>
-        <button type="button" class="mobile-suggest-item" data-slot="1"></button>
-        <button type="button" class="mobile-suggest-item" data-slot="2"></button>
-      </div>
-
       <div id="keyboard" class="keyboard hidden" aria-hidden="true">
         <div id="kbSuggest" class="kb-suggest">
           <button type="button" class="kb-suggest-item" data-slot="0"></button>
@@ -286,6 +280,6 @@
       <a class="menu-back" href="../" aria-label="Back to menu"></a>
     </div>
 
-    <script src="./app.js?v=20260616live3"></script>
+    <script src="./app.js?v=20260616live4"></script>
   </body>
 </html>
