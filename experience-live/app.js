@@ -153,6 +153,7 @@ function unitOptionsFor(suggestion) {
 }
 
 const kbSuggest = document.getElementById("kbSuggest");
+const mobileSuggest = document.getElementById("mobileSuggest");
 
 function insertChar(ch) {
   if (!ch) return;
@@ -212,6 +213,7 @@ function selectSuggestion(suggestion) {
 
   // Real address selected → show the (simulated) inline unit picker so the
   // customer can pick their apartment or say they don't see their unit.
+  hideMobileSuggest();
   renderUnitRows(unitOptionsFor(suggestion));
   setDropdownMode("units");
   setFocusState(true);
@@ -247,6 +249,58 @@ function updatePredictions() {
     item.dataset.slot = String(i);
     item.style.visibility = c.label ? "visible" : "hidden";
   });
+
+  renderMobileSuggest();
+}
+
+// On touch devices the simulated keyboard (and its suggestion bar) is hidden in
+// favour of the OS keyboard, which a web page can't populate. This floating
+// strip mimics the iOS predictive bar by docking real address matches just above
+// the OS keyboard.
+function renderMobileSuggest() {
+  if (!mobileSuggest || !isTouchDevice) return;
+  const focused = document.activeElement === addressInput;
+  const inUnits = dropdown.classList.contains("dropdown-units");
+  const matches = latestResults.slice(0, 3);
+
+  if (!focused || inUnits || matches.length === 0) {
+    hideMobileSuggest();
+    return;
+  }
+
+  const buttons = mobileSuggest.querySelectorAll(".mobile-suggest-item");
+  buttons.forEach((btn, i) => {
+    const match = matches[i];
+    btn.textContent = match ? match.line1 : "";
+    btn.dataset.slot = String(i);
+    btn.style.visibility = match ? "visible" : "hidden";
+  });
+  mobileSuggest.classList.remove("hidden");
+  positionMobileSuggest();
+}
+
+function hideMobileSuggest() {
+  if (mobileSuggest) mobileSuggest.classList.add("hidden");
+}
+
+// Pin the strip to the bottom of the *visual* viewport so it rides just above
+// the OS keyboard (the layout viewport doesn't shrink when the keyboard opens).
+function positionMobileSuggest() {
+  if (!mobileSuggest || mobileSuggest.classList.contains("hidden")) return;
+  const vv = window.visualViewport;
+  if (!vv) {
+    mobileSuggest.style.top = "";
+    mobileSuggest.style.bottom = "0px";
+    return;
+  }
+  const h = mobileSuggest.offsetHeight || 48;
+  mobileSuggest.style.bottom = "auto";
+  mobileSuggest.style.top = `${Math.round(vv.offsetTop + vv.height - h)}px`;
+}
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", positionMobileSuggest);
+  window.visualViewport.addEventListener("scroll", positionMobileSuggest);
 }
 
 function setFocusState(active) {
@@ -837,6 +891,23 @@ kbSuggest.addEventListener("click", (event) => {
   addressInput.focus();
 });
 
+if (mobileSuggest) {
+  // pointerdown (not click) so the selection lands before the OS keyboard's blur
+  // tears down the strip.
+  mobileSuggest.addEventListener("pointerdown", (event) => {
+    const item = event.target.closest(".mobile-suggest-item");
+    if (!item) return;
+    event.preventDefault();
+    const slot = Number(item.dataset.slot);
+    const suggestion = latestResults[slot];
+    if (suggestion) {
+      keyboardPinned = true;
+      selectSuggestion(suggestion);
+      hideMobileSuggest();
+    }
+  });
+}
+
 editAddressLink.addEventListener("click", (event) => {
   event.preventDefault();
   enterAddressStep();
@@ -891,6 +962,9 @@ addressInput.addEventListener("blur", () => {
     if (!keyboardPinned) {
       showKeyboard(false);
       activeInput = null;
+    }
+    if (document.activeElement !== addressInput) {
+      hideMobileSuggest();
     }
   }, 120);
 });
