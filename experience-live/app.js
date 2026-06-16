@@ -121,8 +121,17 @@ async function fetchPhoton(query) {
   // Optimum is a US provider — prefer US results, but fall back to all if none.
   const us = all.filter((s) => s.cc === "US");
   const list = us.length ? us : all;
+  // Photon often returns several OSM objects for one address (building, entrance,
+  // etc.) — collapse to unique display values so the dropdown shows distinct rows.
+  const seen = new Set();
+  const unique = list.filter((s) => {
+    const key = s.value.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
   // Surface precise street addresses ahead of broad place names.
-  return list.sort((a, b) => Number(b.hasStreet) - Number(a.hasStreet)).slice(0, 6);
+  return unique.sort((a, b) => Number(b.hasStreet) - Number(a.hasStreet)).slice(0, 6);
 }
 
 // Simulated unit picker after a real address is chosen (real per-building unit
