@@ -12,4 +12,4 @@
 //   3. Create a "Secret key" -> switch to an "Embedded/website key" and add the
 //      hostnames above.
 //   4. Paste the key string below, then commit/redeploy.
-window.SMARTY_WEBSITE_KEY = "";
+window.SMARTY_WEBSITE_KEY = "281812900215065894";
