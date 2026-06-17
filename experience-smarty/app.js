@@ -126,7 +126,19 @@ async function fetchSmarty(query) {
   });
   if (!res.ok) throw new Error(`Smarty ${res.status}`);
   const data = await res.json();
-  return (data.suggestions || []).map(smartyToSuggestion).slice(0, 6);
+  const mapped = (data.suggestions || []).map(smartyToSuggestion);
+
+  // For a building, Smarty returns both the bare street address (entries 0) and
+  // a "(N units...)" container (entries > 1) for the same base address. When a
+  // units container exists, hide the plain no-unit row so the building shows once
+  // (customers without a specific unit use "I don't see my unit here").
+  const baseKey = (s) => `${s.line1}|${s.line2}`.toLowerCase();
+  const hasUnits = new Set(
+    mapped.filter((s) => s.units > 0).map((s) => baseKey(s))
+  );
+  const filtered = mapped.filter((s) => !(s.units === 0 && hasUnits.has(baseKey(s))));
+
+  return filtered.slice(0, 6);
 }
 
 // Expand a building (entries > 1) into its individual unit addresses using the
