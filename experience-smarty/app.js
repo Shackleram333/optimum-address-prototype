@@ -598,14 +598,15 @@ function showKeyboard(show, focusEl) {
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
-      // Pin the headline near the top on focus, then HOLD it there. While held, every
-      // scroll re-pins the headline geometrically, so the page stays put through
-      // autofill/typing/keyboard-open (iOS can't drift it). The hold is released the
-      // instant the user drags with a finger (see the touchstart handler below).
+      // Pin the headline near the top on focus, then FREEZE the scroller. Once frozen
+      // (overflow:hidden) the native iOS keyboard/autofill physically cannot scroll
+      // the page, so it stays perfectly still through autofill/typing — no re-pinning,
+      // no tug-of-war, no slow-motion drift. A finger drag releases it (touchmove).
       holdPin = true;
       window.setTimeout(() => {
-        scrollSearchToTop("auto");
+        scrollSearchToTop("instant");
         updateDropdownMaxHeight();
+        phone.classList.add("pin-frozen");
       }, 120);
     }
     return;
@@ -690,6 +691,7 @@ function enterAddressStep() {
   // stay-put guard in showKeyboard intentionally skips this while on the
   // address step, so clear it explicitly here).
   phone.classList.remove("keyboard-open");
+  phone.classList.remove("pin-frozen");
   holdPin = false;
   phoneViewport.scrollTo({ top: 0, behavior: "smooth" });
   setCurrentPage("address");
@@ -730,6 +732,7 @@ function enterPlansFlow() {
   showKeyboard(false);
   activeInput = null;
   holdPin = false;
+  phone.classList.remove("pin-frozen");
   // Home (header/address/hero) stays visible behind the modal's scrim.
   checkingSection.classList.add("hidden");
   activeAccountSection.classList.add("hidden");
@@ -1088,24 +1091,17 @@ window.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: tru
 phoneViewport.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: true });
 applyKeyboardLayout(keyboardMode);
 
-// Scroll hold for the native keyboard (real iOS/Android). While `holdPin` is true we
-// re-pin the headline to the top on every scroll, so any scroll the user did NOT
-// cause with their finger (iOS keyboard/autofill drift) is corrected in the same
-// frame and there is no visible shift. A genuine finger touch releases the hold so
-// the user can scroll the page freely whenever they want.
+// Release the freeze the instant the user actually drags with a finger (touchmove,
+// not just a tap) so manual scrolling always works. iOS keyboard/autofill drift is
+// not a finger drag, so it never reaches here — the page stays frozen and still.
 if (isTouchDevice) {
   phoneViewport.addEventListener(
-    "touchstart",
+    "touchmove",
     () => {
-      // A real finger touch means the user wants to scroll — release the hold.
-      holdPin = false;
-    },
-    { passive: true }
-  );
-  phoneViewport.addEventListener(
-    "scroll",
-    () => {
-      if (holdPin) scrollSearchToTop("auto");
+      if (holdPin) {
+        holdPin = false;
+        phone.classList.remove("pin-frozen");
+      }
     },
     { passive: true }
   );

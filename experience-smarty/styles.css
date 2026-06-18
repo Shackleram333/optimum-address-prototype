@@ -14,6 +14,10 @@ body {
 .phone { width:100%; max-width:414px; height:940px; background:#fff; position:relative; overflow:hidden; }
 .phone-viewport { position:relative; height:100%; overflow:auto; scroll-behavior:smooth; }
 .phone.keyboard-open .phone-viewport { padding-bottom:365px; }
+/* While the address field is focused we pin the search box to the top and then
+   FREEZE the scroller, so the native iOS keyboard/autofill can't drift the page.
+   A finger drag removes this class (see app.js) to restore manual scrolling. */
+.phone.pin-frozen .phone-viewport { overflow:hidden; }
 @media (pointer: coarse) {
   #keyboard { display:none !important; }
   /* On a real phone the window scrolls (not .phone-viewport). The summary bar
