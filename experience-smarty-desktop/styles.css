@@ -270,7 +270,7 @@ body.in-quotes .nav { display: none; }
 .quotes { background: #f5f6f8; min-height: 100vh; padding-bottom: 64px; }
 
 /* Buy-flow header */
-.bf-header { background: #fff; border-bottom: 1px solid var(--orange); }
+.bf-header { background: #fff; }
 .bf-header-inner {
   max-width: 1280px; margin: 0 auto; padding: 22px 40px;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
