@@ -63,7 +63,7 @@ async function fetchSmarty(query) {
   searchAbort = new AbortController();
   const params = new URLSearchParams({
     key: SMARTY_KEY,
-    search: query,
+    search: stripCountry(query),
     max_results: "10",
   });
   const res = await fetch(`${SMARTY_ENDPOINT}?${params.toString()}`, {
@@ -146,6 +146,17 @@ function resetSelection() {
 
 function normalizeQuery(value) {
   return value.trim().toLowerCase();
+}
+
+// Strip a trailing country token so Smarty autocomplete still matches when the
+// user pastes / autofills a full address ending in the country (e.g. "..., United States").
+function stripCountry(value) {
+  let v = (value || "").trim();
+  const country = /[\s,]+(?:united states of america|united states|u\.?\s?s\.?\s?a\.?|u\.?\s?s\.?|usa|us|america)\s*$/i;
+  // Run twice in case of doubled tokens like "USA, United States".
+  v = v.replace(country, "").replace(country, "");
+  v = v.replace(/[\s,]+$/, "").trim();
+  return v;
 }
 
 function setFocusState(active) {
