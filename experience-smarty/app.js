@@ -580,20 +580,24 @@ function showKeyboard(show, focusEl) {
   // but still reserve bottom scroll space so content can be scrolled up above
   // the native keyboard.
   if (isTouchDevice) {
-    // While the inline unit picker is open, keep the reserved scroll height so the
-    // page stays scrolled where the address search left it (header out of view).
-    if (!show && dropdown.classList.contains("dropdown-units")) {
+    // Stay-put rule: never collapse the reserved keyboard space or move the page
+    // during the address step. The native keyboard is dismissed via blur(); the
+    // reserved space is released on a page transition (enterAddressStep / quotes /
+    // etc.). This keeps the focus-pin scroll position stable through autofill,
+    // typing, and opening the apartment picker — while manual scrolling still works.
+    if (!show && (currentPage === "address" || dropdown.classList.contains("dropdown-units"))) {
       updateDropdownMaxHeight();
       return;
     }
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
-      // UX rule: once the field has focus we do NOT auto-scroll the page. iOS
-      // brings the focused field into view natively; we only reserve keyboard
-      // space (keyboard-open) and resize the dropdown after layout settles. The
-      // user remains free to scroll manually.
-      window.setTimeout(updateDropdownMaxHeight, 120);
+      // Pin the headline near the top ONCE, on focus, so there's room to type.
+      // After this we never auto-scroll again — the user can scroll manually.
+      window.setTimeout(() => {
+        scrollSearchToTop();
+        updateDropdownMaxHeight();
+      }, 120);
     }
     return;
   }
@@ -673,6 +677,10 @@ function enterAddressStep() {
   updateCtaLabel();
   keyboardPinned = false;
   showKeyboard(false);
+  // Force-release any reserved keyboard space on a fresh address entry (the
+  // stay-put guard in showKeyboard intentionally skips this while on the
+  // address step, so clear it explicitly here).
+  phone.classList.remove("keyboard-open");
   phoneViewport.scrollTo({ top: 0, behavior: "smooth" });
   setCurrentPage("address");
 }
@@ -987,15 +995,6 @@ addressInput.addEventListener("blur", () => {
     const inUnitsMode = dropdown.classList.contains("dropdown-units");
     if (document.activeElement !== addressInput && !inUnitsMode) {
       setFocusState(false);
-      // The field can lose focus WITHOUT going through our dropdown — e.g. iOS
-      // AutoFill Contact fills the address and closes the keyboard. In that path
-      // nothing collapses the reserved keyboard space, leaving an empty gap. Just
-      // release the reserved space here. Per the UX rule we do NOT force any
-      // scroll — the page stays where it is and the user can scroll manually.
-      if (isTouchDevice && currentPage === "address") {
-        keyboardPinned = false;
-        showKeyboard(false);
-      }
     }
     if (!keyboardPinned) {
       showKeyboard(false);
