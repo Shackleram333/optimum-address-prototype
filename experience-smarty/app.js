@@ -536,6 +536,20 @@ function showAddressError(show) {
   addressField.classList.toggle("error", show);
 }
 
+// Scroll the search step so the "See if Optimum..." headline sits just under the
+// top of the viewport (~10px), maximizing room for the dropdown/keyboard.
+function scrollSearchToTop() {
+  const headline = addressSection.querySelector("h1") || addressSection;
+  const delta =
+    headline.getBoundingClientRect().top -
+    phoneViewport.getBoundingClientRect().top -
+    10;
+  phoneViewport.scrollTo({
+    top: phoneViewport.scrollTop + delta,
+    behavior: "smooth",
+  });
+}
+
 function showKeyboard(show, focusEl) {
   // On touch devices the OS provides the keyboard; never show the simulated one,
   // but still reserve bottom scroll space so content can be scrolled up above
@@ -550,15 +564,10 @@ function showKeyboard(show, focusEl) {
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
-      // Pin the search to the top so the blue header scrolls out of view.
+      // Pin the headline just under the top so the blue header scrolls out of
+      // view and the dropdown gets maximum room.
       window.setTimeout(() => {
-        const delta =
-          addressSection.getBoundingClientRect().top -
-          phoneViewport.getBoundingClientRect().top;
-        phoneViewport.scrollTo({
-          top: phoneViewport.scrollTop + delta,
-          behavior: "smooth",
-        });
+        scrollSearchToTop();
         updateDropdownMaxHeight();
       }, 120);
     }
@@ -569,7 +578,7 @@ function showKeyboard(show, focusEl) {
     phone.classList.add("keyboard-open");
     if (focusEl) {
       window.setTimeout(() => {
-        focusEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollSearchToTop();
         updateDropdownPlacement();
         updateDropdownMaxHeight();
       }, 60);
