@@ -117,7 +117,7 @@ a { color: inherit; }
 
 /* ---------- Dropdown ---------- */
 .dropdown {
-  position: absolute; top: calc(100% + 8px); left: 0; width: 420px;
+  position: absolute; top: 100%; left: 0; width: 420px;
   background: #fff; border-radius: 8px; overflow: hidden;
   box-shadow: 0 18px 40px rgb(15 26 46 / 18%); border: 1px solid #e8edf6;
   max-height: 360px; overflow-y: auto; z-index: 70;
