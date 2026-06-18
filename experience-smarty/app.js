@@ -43,11 +43,11 @@ let selectedSuggestion = null; // the chosen building/address object
 let selectedUnit = ""; // chosen unit for MDU addresses
 let checkingTimer = null;
 let currentPage = "address";
-// When set (a number), the phone viewport is "locked" to this scrollTop. The native
-// keyboard/autofill on iOS likes to drift the inner scroller after focus; we snap it
-// back instantly so the search box stays exactly where it was pinned. A real finger
-// drag (touchstart) releases the lock so manual scrolling always works.
-let addressScrollLock = null;
+// While true, the address step actively holds the headline pinned ~10px from the top.
+// The native keyboard/autofill on iOS likes to drift the inner scroller after focus;
+// we re-pin (geometrically, to the headline) on every scroll so the search box stays
+// put. A real finger drag (touchstart) clears this so manual scrolling always works.
+let holdPin = false;
 
 function setPageInUrl(page) {
   const url = new URL(window.location.href);
@@ -574,6 +574,7 @@ function scrollSearchToTop(behavior = "smooth") {
     headline.getBoundingClientRect().top -
     phoneViewport.getBoundingClientRect().top -
     10;
+  if (Math.abs(delta) <= 1) return; // already pinned — avoid redundant scrolls/loops
   phoneViewport.scrollTo({
     top: phoneViewport.scrollTop + delta,
     behavior,
@@ -597,14 +598,14 @@ function showKeyboard(show, focusEl) {
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
-      // Pin the headline near the top ONCE, on focus, so there's room to type, then
-      // LOCK that scroll position. The lock holds the page perfectly still through
-      // autofill/typing/keyboard-close (iOS can't drift it), and is released the
+      // Pin the headline near the top on focus, then HOLD it there. While held, every
+      // scroll re-pins the headline geometrically, so the page stays put through
+      // autofill/typing/keyboard-open (iOS can't drift it). The hold is released the
       // instant the user drags with a finger (see the touchstart handler below).
+      holdPin = true;
       window.setTimeout(() => {
         scrollSearchToTop("auto");
         updateDropdownMaxHeight();
-        addressScrollLock = phoneViewport.scrollTop;
       }, 120);
     }
     return;
@@ -689,7 +690,7 @@ function enterAddressStep() {
   // stay-put guard in showKeyboard intentionally skips this while on the
   // address step, so clear it explicitly here).
   phone.classList.remove("keyboard-open");
-  addressScrollLock = null;
+  holdPin = false;
   phoneViewport.scrollTo({ top: 0, behavior: "smooth" });
   setCurrentPage("address");
 }
@@ -728,7 +729,7 @@ function enterPlansFlow() {
   keyboardPinned = false;
   showKeyboard(false);
   activeInput = null;
-  addressScrollLock = null;
+  holdPin = false;
   // Home (header/address/hero) stays visible behind the modal's scrim.
   checkingSection.classList.add("hidden");
   activeAccountSection.classList.add("hidden");
@@ -1087,26 +1088,24 @@ window.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: tru
 phoneViewport.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: true });
 applyKeyboardLayout(keyboardMode);
 
-// Scroll-lock for the native keyboard (real iOS/Android). After we pin the search
-// box on focus we set `addressScrollLock`; from then on any scroll that the user did
-// NOT cause with their finger (iOS keyboard/autofill drift) is snapped straight back
-// — same frame, so there is no visible shift. A genuine finger touch releases the
-// lock so the user can scroll the page freely whenever they want.
+// Scroll hold for the native keyboard (real iOS/Android). While `holdPin` is true we
+// re-pin the headline to the top on every scroll, so any scroll the user did NOT
+// cause with their finger (iOS keyboard/autofill drift) is corrected in the same
+// frame and there is no visible shift. A genuine finger touch releases the hold so
+// the user can scroll the page freely whenever they want.
 if (isTouchDevice) {
   phoneViewport.addEventListener(
     "touchstart",
     () => {
-      addressScrollLock = null;
+      // A real finger touch means the user wants to scroll — release the hold.
+      holdPin = false;
     },
     { passive: true }
   );
   phoneViewport.addEventListener(
     "scroll",
     () => {
-      if (addressScrollLock == null) return;
-      if (Math.abs(phoneViewport.scrollTop - addressScrollLock) > 1) {
-        phoneViewport.scrollTop = addressScrollLock;
-      }
+      if (holdPin) scrollSearchToTop("auto");
     },
     { passive: true }
   );
