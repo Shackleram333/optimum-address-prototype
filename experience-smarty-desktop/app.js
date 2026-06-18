@@ -347,7 +347,7 @@ function enterQuotes() {
   siteFooter.classList.add("hidden");
   scrim.classList.add("hidden");
   setDropdownMode("hidden");
-  quotesAddress.textContent = fullSelectedAddress() || "1111 Stewart Ave, Bethpage, NY 11714";
+  quotesAddress.textContent = fullSelectedAddress() || addressInput.value.trim();
   quotesSection.classList.remove("hidden");
   document.body.classList.add("in-quotes");
   currentPage = "quotes";
@@ -604,13 +604,6 @@ syncInputUI();
 
 const requestedPage = new URLSearchParams(window.location.search).get("page");
 if (requestedPage === "quotes" || requestedPage === "plans") {
-  selectedSuggestion = {
-    line1: "1111 Stewart Ave",
-    line2: "Bethpage, NY 11714",
-    value: "1111 Stewart Ave, Bethpage, NY 11714",
-    units: 0,
-  };
-  selectedUnit = UNIT_NONE;
   enterQuotes();
 } else {
   enterAddressStep();
