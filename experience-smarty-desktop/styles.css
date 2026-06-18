@@ -282,20 +282,22 @@ body.in-quotes .nav { display: none; }
 .bf-address { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; color: var(--ink); }
 .bf-edit { border: 0; background: none; padding: 2px; cursor: pointer; line-height: 0; }
 
-/* Buy-flow tracker / stepper */
-.bf-tracker { background: #fff; border-bottom: 1px solid var(--border-faint, #e8e8e8); }
+/* Buy-flow tracker / stepper — segmented progress bar (Figma 1168:36336) */
+.bf-tracker { background: #fafafa; }
 .bf-tracker-inner {
-  max-width: 1280px; margin: 0 auto; padding: 0 40px;
+  max-width: 1280px; margin: 0 auto; padding: 16px 40px 8px;
   display: grid; grid-template-columns: repeat(4, 1fr);
 }
 .bf-step {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 16px 0; font-size: 13px; font-weight: 600; color: #9a9a9a;
-  border-bottom: 2px solid transparent; letter-spacing: .2px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  font-size: 13px; font-weight: 600; line-height: 1.25; letter-spacing: .3px;
+  color: #717171;
 }
-.bf-step-dot { width: 7px; height: 7px; border-radius: 50%; background: #cfcfcf; }
-.bf-step--active { color: var(--ink); border-bottom-color: var(--ink); }
-.bf-step--active .bf-step-dot { background: var(--action); }
+.bf-step-bar { width: 100%; height: 6px; background: var(--border-subtle, #d9d9d9); }
+.bf-step--active { color: #191919; }
+.bf-step--active .bf-step-bar {
+  background: linear-gradient(to right, var(--orange) 0 38.3%, var(--border-subtle, #d9d9d9) 38.3% 100%);
+}
 
 /* Two-column body */
 .quotes-body {
