@@ -246,6 +246,10 @@ async function selectSuggestion(suggestion) {
     addressInput.blur();
     keyboardPinned = false;
     showKeyboard(false);
+    // Keyboard collapse removes the reserved bottom padding; without an explicit
+    // target the viewport clamps and jumps. Settle to the top so the filled field
+    // and CTA stay in view.
+    requestAnimationFrame(() => phoneViewport.scrollTo({ top: 0, behavior: "smooth" }));
     return;
   }
 
