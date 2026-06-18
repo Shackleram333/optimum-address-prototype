@@ -92,7 +92,7 @@ a { color: inherit; }
 }
 .text-input.focused { border-color: var(--action); box-shadow: 0 0 0 3px rgba(39,96,240,.15); }
 .text-input.error { border-color: var(--err); background: #fff5f4; }
-.pin-icon { width: 26px; height: 26px; flex: 0 0 auto; }
+.pin-icon { height: 26px; width: auto; flex: 0 0 auto; }
 .text-input input {
   flex: 1; border: 0; outline: none; min-width: 0; background: transparent;
   font: 400 16px/1.5 Inter, sans-serif; color: var(--ink-strong); letter-spacing: .3px;
