@@ -349,6 +349,7 @@ function enterQuotes() {
   setDropdownMode("hidden");
   quotesAddress.textContent = fullSelectedAddress() || "1111 Stewart Ave, Bethpage, NY 11714";
   quotesSection.classList.remove("hidden");
+  document.body.classList.add("in-quotes");
   currentPage = "quotes";
   window.scrollTo({ top: 0, behavior: "auto" });
 }
@@ -357,6 +358,7 @@ function enterAddressStep() {
   if (checkingTimer) { window.clearTimeout(checkingTimer); checkingTimer = null; }
   hideCheckModal();
   quotesSection.classList.add("hidden");
+  document.body.classList.remove("in-quotes");
   checkBand.classList.remove("hidden");
   heroBento.classList.remove("hidden");
   siteFooter.classList.remove("hidden");
@@ -512,6 +514,93 @@ quotesCart.addEventListener("click", () => { if (currentPage === "quotes") showE
 endPrototype.addEventListener("click", (event) => { event.stopPropagation(); restartPrototype(); });
 
 syncInputUI();
+
+/* ---------- Quotes screen: plan selection + order summary ---------- */
+// Self-contained enhancement for the redesigned #quotesSection. Internet plans
+// are single-select (one always selected); TV cards toggle on/off. The Monthly
+// charges panel recomputes from the current selection. Guarded so the rest of
+// the prototype keeps working even if the markup changes.
+(function initQuotesSelection() {
+  const internetGrid = document.getElementById("internetGrid");
+  const tvGrid = document.getElementById("tvGrid");
+  const summaryLines = document.getElementById("summaryLines");
+  const summaryPlanName = document.getElementById("summaryPlanName");
+  const summaryPlanPrice = document.getElementById("summaryPlanPrice");
+  const summaryDueTotal = document.getElementById("summaryDueTotal");
+  const summaryTopTotal = document.getElementById("summaryTopTotal");
+  if (!internetGrid || !summaryLines) return;
+
+  const money = (n) => `$${n.toFixed(2)}`;
+  const internetCards = Array.from(internetGrid.querySelectorAll(".plan-card"));
+  const tvCards = tvGrid ? Array.from(tvGrid.querySelectorAll(".plan-card")) : [];
+
+  function selectedInternet() {
+    return internetGrid.querySelector(".plan-card.is-selected") || internetCards[0];
+  }
+
+  function renderSummary() {
+    const net = selectedInternet();
+    const netName = net ? net.dataset.plan : "Internet";
+    const netPrice = net ? Number(net.dataset.price) : 0;
+    const addedTv = tvCards.filter((c) => c.classList.contains("is-selected"));
+    const tvSubtotal = addedTv.reduce((sum, c) => sum + Number(c.dataset.price), 0);
+    const tvDiscount = addedTv.length ? 5 : 0; // "Save $5 when you add TV"
+    const due = netPrice + tvSubtotal - tvDiscount;
+
+    if (summaryPlanName) summaryPlanName.textContent = netName;
+    if (summaryPlanPrice) summaryPlanPrice.textContent = `${money(netPrice)}/mo`;
+
+    // Remove any previously injected dynamic rows (TV + discount).
+    summaryLines.querySelectorAll("[data-dynamic]").forEach((el) => el.remove());
+    const creditRow = summaryLines.querySelector(".sl-credit");
+    addedTv.forEach((c) => {
+      const row = document.createElement("div");
+      row.className = "summary-line";
+      row.dataset.dynamic = "tv";
+      row.innerHTML = `<span class="sl-label">${c.dataset.tv}</span><span class="sl-value">${money(Number(c.dataset.price))}/mo</span>`;
+      summaryLines.insertBefore(row, creditRow || null);
+    });
+    if (tvDiscount) {
+      const row = document.createElement("div");
+      row.className = "summary-line sl-credit";
+      row.dataset.dynamic = "tvdiscount";
+      row.innerHTML = `<span class="sl-label">Save $5 when you add TV</span><span class="sl-value">-${money(tvDiscount)}/mo</span>`;
+      summaryLines.insertBefore(row, creditRow || null);
+    }
+
+    if (summaryDueTotal) summaryDueTotal.textContent = `${money(due)}/mo`;
+    if (summaryTopTotal) summaryTopTotal.textContent = money(due);
+  }
+
+  internetCards.forEach((card) => {
+    const btn = card.querySelector(".plan-select");
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      internetCards.forEach((c) => {
+        c.classList.remove("is-selected");
+        const b = c.querySelector(".plan-select");
+        if (b) b.textContent = "Select";
+      });
+      card.classList.add("is-selected");
+      btn.textContent = "Selected";
+      renderSummary();
+    });
+  });
+
+  tvCards.forEach((card) => {
+    const btn = card.querySelector(".plan-select");
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const on = card.classList.toggle("is-selected");
+      btn.textContent = on ? "Added" : "Add TV";
+      renderSummary();
+    });
+  });
+
+  renderSummary();
+})();
 
 const requestedPage = new URLSearchParams(window.location.search).get("page");
 if (requestedPage === "quotes" || requestedPage === "plans") {

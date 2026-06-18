@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260618smartydesk7" />
+    <link rel="stylesheet" href="./styles.css?v=20260618smartydesk8" />
   </head>
   <body data-page="address">
     <div class="site">
@@ -116,99 +116,154 @@
 
       <!-- Quotes / plans (lower funnel) -->
       <section id="quotesSection" class="quotes hidden">
-        <div class="quotes-bar">
-          <div class="quotes-bar-inner">
-            <div class="buyflow-tracker">
-              <span class="bt-seg bt-active"></span>
-              <span class="bt-seg"></span>
-              <span class="bt-seg"></span>
-              <span class="bt-seg"></span>
+        <!-- Buy-flow header -->
+        <header class="bf-header">
+          <div class="bf-header-inner">
+            <div class="bf-header-left">
+              <img class="bf-logo" src="./assets/logo-optimum.png" alt="Optimum" />
+              <span class="bf-help">Need help? Call <a href="#">866.347.4784</a></span>
             </div>
-          </div>
-        </div>
-        <div class="quotes-body">
-          <h1 class="quotes-title">Pick your Internet speed</h1>
-          <p class="quotes-address" id="quotesAddress">1111 Stewart Ave, Apt 1A, Bethpage, NY 11714</p>
-
-          <div class="edu-banner">
-            <svg class="edu-check" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0a7d34" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>
-            <p>Save $5/mo. on any internet plan — just provide your <strong>.edu</strong> email on the contact page.</p>
-          </div>
-
-          <div class="plans-include">
-            <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#637085" aria-hidden="true"><path d="M208 80h-24V56a56 56 0 0 0-112 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16ZM96 56a32 32 0 0 1 64 0v24H96Z"/></svg>5-year price guarantee</span>
-            <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#637085" aria-hidden="true"><path d="M222 90a8 8 0 0 0-13-3l-26 26-23-4-4-23 26-26a8 8 0 0 0-3-13 56 56 0 0 0-69 70L38 165a24 24 0 0 0 34 34l48-48a56 56 0 0 0 70-69Z"/></svg>Free Installation</span>
-            <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#637085" aria-hidden="true"><path d="M128 168a16 16 0 1 0 16 16 16 16 0 0 0-16-16Zm0-48a60 60 0 0 0-42 17 8 8 0 0 0 11 11 44 44 0 0 1 62 0 8 8 0 0 0 11-11 60 60 0 0 0-42-17Zm0-48a108 108 0 0 0-76 31 8 8 0 0 0 11 11 92 92 0 0 1 130 0 8 8 0 0 0 11-11 108 108 0 0 0-76-31Z"/></svg>Equipment Included</span>
-          </div>
-
-          <div class="plan-grid">
-            <article class="plan-card">
-              <div class="plan-gauge"><svg viewBox="0 0 56 30" width="56" height="30" fill="none" aria-hidden="true"><path d="M4 28a24 24 0 0 1 48 0" stroke="#d4d8e0" stroke-width="4" stroke-linecap="round"/><path d="M4 28a24 24 0 0 1 14-21.8" stroke="#0066de" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#0b132b"/><line x1="28" y1="28" x2="16" y2="13" stroke="#0b132b" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-              <h2 class="plan-name">300 Mbps Internet</h2>
-              <div class="plan-price">$25<span>/mo.</span></div>
-              <p class="plan-qualifier">with Auto Pay &amp; Paperless Bill</p>
-              <p class="plan-guarantee"><svg viewBox="0 0 256 256" width="13" height="13" fill="#637085" aria-hidden="true"><path d="M208 80h-24V56a56 56 0 0 0-112 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16ZM96 56a32 32 0 0 1 64 0v24H96Z"/></svg>5-year price guarantee</p>
-              <div class="plan-perk">
-                <span class="hbo-logo">HBO<span>Max</span></span>
-                <p>HBO Max Basic with Ads plan: 12 months included <a href="#">See details</a></p>
-              </div>
-              <div class="plan-links"><a href="#">Details</a><a href="#">Broadband Facts</a></div>
-              <button class="primary-btn plan-select">Select</button>
-            </article>
-
-            <article class="plan-card">
-              <div class="plan-gauge"><svg viewBox="0 0 56 30" width="56" height="30" fill="none" aria-hidden="true"><path d="M4 28a24 24 0 0 1 48 0" stroke="#d4d8e0" stroke-width="4" stroke-linecap="round"/><path d="M4 28a24 24 0 0 1 46.5-6" stroke="#0066de" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#0b132b"/><line x1="28" y1="28" x2="44" y2="16" stroke="#0b132b" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-              <h2 class="plan-name">1 Gig Fiber Internet</h2>
-              <div class="plan-price">$45<span>/mo.</span> <s>$129.99/mo.</s></div>
-              <p class="plan-qualifier">with Auto Pay &amp; Paperless Bill</p>
-              <p class="plan-guarantee"><svg viewBox="0 0 256 256" width="13" height="13" fill="#637085" aria-hidden="true"><path d="M208 80h-24V56a56 56 0 0 0-112 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16ZM96 56a32 32 0 0 1 64 0v24H96Z"/></svg>5-year price guarantee</p>
-              <div class="plan-perk">
-                <span class="hbo-logo">HBO<span>Max</span></span>
-                <p>HBO Max Basic with Ads plan: 12 months included <a href="#">See details</a></p>
-              </div>
-              <div class="plan-links"><a href="#">Details</a><a href="#">Broadband Facts</a></div>
-              <button class="secondary-btn plan-select">Select</button>
-            </article>
-          </div>
-
-          <p class="wired-note">Wired connection speeds. WiFi speeds may vary.</p>
-
-          <div class="quotes-subhead">TV (optional)</div>
-          <p class="quotes-promo"><svg viewBox="0 0 256 256" width="18" height="18" fill="#0066de" aria-hidden="true"><path d="M243 110 146 13a14 14 0 0 0-10-4H40a14 14 0 0 0-14 14v96a14 14 0 0 0 4 10l97 97a14 14 0 0 0 20 0l96-96a14 14 0 0 0 0-20ZM76 84a12 12 0 1 1 12-12 12 12 0 0 1-12 12Z"/></svg>Save $10/mo. on Internet when you add TV</p>
-
-          <div class="plan-grid">
-            <article class="plan-card tv-card">
-              <span class="popular-badge">Most popular</span>
-              <div class="tv-icon"><svg viewBox="0 0 256 256" width="34" height="34" fill="none" stroke="#0066de" stroke-width="14"><rect x="32" y="56" width="192" height="128" rx="12"/><line x1="88" y1="216" x2="168" y2="216" stroke-linecap="round"/></svg></div>
-              <h2 class="plan-name">Entertainment TV</h2>
-              <div class="plan-price">$30<span>/mo.</span></div>
-              <p class="plan-qualifier">125+ channels</p>
-              <ul class="tv-features"><li>Local channels &amp; news</li><li>Sports &amp; entertainment</li><li>Free DVR included</li></ul>
-              <div class="plan-links"><a href="#">Details</a></div>
-              <button class="secondary-btn plan-select">Add TV</button>
-            </article>
-            <article class="plan-card tv-card">
-              <div class="tv-icon"><svg viewBox="0 0 256 256" width="34" height="34" fill="none" stroke="#0066de" stroke-width="14"><rect x="32" y="56" width="192" height="128" rx="12"/><line x1="88" y1="216" x2="168" y2="216" stroke-linecap="round"/></svg></div>
-              <h2 class="plan-name">Everything TV</h2>
-              <div class="plan-price">$70<span>/mo.</span></div>
-              <p class="plan-qualifier">340+ channels</p>
-              <ul class="tv-features"><li>Everything in Entertainment</li><li>Premium movie channels</li><li>Regional sports networks</li></ul>
-              <div class="plan-links"><a href="#">Details</a></div>
-              <button class="secondary-btn plan-select">Add TV</button>
-            </article>
-          </div>
-        </div>
-
-        <div class="quotes-cart" id="quotesCart">
-          <div class="quotes-cart-inner">
-            <div class="cart-total">
-              <strong>$130.00<span>/mo.</span></strong>
-              <button class="cart-details" type="button">Details
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0066de" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
+            <div class="bf-address">
+              <span id="quotesAddress">1111 Stewart Ave, Apt 1A, Bethpage, NY 11714</span>
+              <button class="bf-edit" type="button" aria-label="Edit address">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2760f0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
               </button>
             </div>
-            <button class="primary-btn cart-continue">Continue</button>
           </div>
+        </header>
+
+        <!-- Buy-flow tracker / stepper -->
+        <nav class="bf-tracker" aria-label="Checkout progress">
+          <div class="bf-tracker-inner">
+            <span class="bf-step bf-step--active"><span class="bf-step-dot"></span>Services</span>
+            <span class="bf-step"><span class="bf-step-dot"></span>Checkout</span>
+            <span class="bf-step"><span class="bf-step-dot"></span>Installation</span>
+            <span class="bf-step"><span class="bf-step-dot"></span>Review</span>
+          </div>
+        </nav>
+
+        <div class="quotes-body">
+          <div class="quotes-main">
+            <h1 class="quotes-title">Pick your Internet speed</h1>
+
+            <div class="plans-include">
+              <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#717171" aria-hidden="true"><path d="M208 80h-24V56a56 56 0 0 0-112 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16ZM96 56a32 32 0 0 1 64 0v24H96Z"/></svg>5-year price guarantee</span>
+              <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#717171" aria-hidden="true"><path d="M222 90a8 8 0 0 0-13-3l-26 26-23-4-4-23 26-26a8 8 0 0 0-3-13 56 56 0 0 0-69 70L38 165a24 24 0 0 0 34 34l48-48a56 56 0 0 0 70-69Z"/></svg>Free Installation</span>
+              <span class="pi-item"><svg viewBox="0 0 256 256" width="16" height="16" fill="#717171" aria-hidden="true"><path d="M128 168a16 16 0 1 0 16 16 16 16 0 0 0-16-16Zm0-48a60 60 0 0 0-42 17 8 8 0 0 0 11 11 44 44 0 0 1 62 0 8 8 0 0 0 11-11 60 60 0 0 0-42-17Zm0-48a108 108 0 0 0-76 31 8 8 0 0 0 11 11 92 92 0 0 1 130 0 8 8 0 0 0 11-11 108 108 0 0 0-76-31Z"/></svg>Equipment Included</span>
+            </div>
+
+            <div class="plan-grid" id="internetGrid">
+              <article class="plan-card" data-plan="300 Mbps Internet" data-price="25">
+                <div class="plan-gauge"><svg viewBox="0 0 56 30" width="56" height="30" fill="none" aria-hidden="true"><path d="M4 28a24 24 0 0 1 48 0" stroke="#d9d9d9" stroke-width="4" stroke-linecap="round"/><path d="M4 28a24 24 0 0 1 14-21.8" stroke="#2760f0" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#171717"/><line x1="28" y1="28" x2="16" y2="13" stroke="#171717" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+                <h2 class="plan-name">300 Mbps Internet</h2>
+                <div class="plan-price">$25<span>/mo.</span></div>
+                <p class="plan-qualifier">with Auto Pay &amp; Paperless Bill</p>
+                <p class="plan-guarantee"><svg viewBox="0 0 256 256" width="14" height="14" fill="#00a04a" aria-hidden="true"><path d="M225.86 102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28 13 138.18 5 128 5s-18.28 8-25.18 14.82c-3.94 3.77-8 7.67-11.57 9.14-3.27 1.36-8.69 1.44-13.94 1.52-9.76.15-20.82.31-28.51 8s-7.85 18.75-8 28.51c-.08 5.25-.16 10.67-1.52 13.94-1.47 3.56-5.37 7.63-9.14 11.57C23 109.72 15 117.82 15 128s8 18.28 14.82 25.18c3.77 3.94 7.67 8 9.14 11.57 1.36 3.27 1.44 8.69 1.52 13.94.15 9.76.31 20.82 8 28.51s18.75 7.85 28.51 8c5.25.08 10.67.16 13.94 1.52 3.56 1.47 7.63 5.37 11.57 9.14C109.72 233 117.82 241 128 241s18.28-8 25.18-14.82c3.94-3.77 8-7.67 11.57-9.14 3.27-1.36 8.69-1.44 13.94-1.52 9.76-.15 20.82-.31 28.51-8s7.85-18.75 8-28.51c.08-5.25.16-10.67 1.52-13.94 1.47-3.56 5.37-7.63 9.14-11.57C233 146.28 241 138.18 241 128s-8-18.28-15.14-25.18Zm-52.2 6.84-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32Z"/></svg>5-year price guarantee</p>
+                <div class="plan-perk">
+                  <span class="hbo-logo">HBO<span>Max</span></span>
+                  <p>HBO Max Basic with Ads plan: 12 months included <a href="#">See details</a></p>
+                </div>
+                <div class="plan-links"><a href="#">Details</a><a href="#">Broadband Facts</a></div>
+                <button class="plan-btn plan-select" type="button">Select</button>
+              </article>
+
+              <article class="plan-card" data-plan="500 Mbps Internet" data-price="35">
+                <div class="plan-gauge"><svg viewBox="0 0 56 30" width="56" height="30" fill="none" aria-hidden="true"><path d="M4 28a24 24 0 0 1 48 0" stroke="#d9d9d9" stroke-width="4" stroke-linecap="round"/><path d="M4 28a24 24 0 0 1 24-23.9" stroke="#2760f0" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#171717"/><line x1="28" y1="28" x2="28" y2="9" stroke="#171717" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+                <h2 class="plan-name">500 Mbps Internet</h2>
+                <div class="plan-price">$35<span>/mo.</span></div>
+                <p class="plan-qualifier">with Auto Pay &amp; Paperless Bill</p>
+                <p class="plan-guarantee"><svg viewBox="0 0 256 256" width="14" height="14" fill="#00a04a" aria-hidden="true"><path d="M225.86 102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28 13 138.18 5 128 5s-18.28 8-25.18 14.82c-3.94 3.77-8 7.67-11.57 9.14-3.27 1.36-8.69 1.44-13.94 1.52-9.76.15-20.82.31-28.51 8s-7.85 18.75-8 28.51c-.08 5.25-.16 10.67-1.52 13.94-1.47 3.56-5.37 7.63-9.14 11.57C23 109.72 15 117.82 15 128s8 18.28 14.82 25.18c3.77 3.94 7.67 8 9.14 11.57 1.36 3.27 1.44 8.69 1.52 13.94.15 9.76.31 20.82 8 28.51s18.75 7.85 28.51 8c5.25.08 10.67.16 13.94 1.52 3.56 1.47 7.63 5.37 11.57 9.14C109.72 233 117.82 241 128 241s18.28-8 25.18-14.82c3.94-3.77 8-7.67 11.57-9.14 3.27-1.36 8.69-1.44 13.94-1.52 9.76-.15 20.82-.31 28.51-8s7.85-18.75 8-28.51c.08-5.25.16-10.67 1.52-13.94 1.47-3.56 5.37-7.63 9.14-11.57C233 146.28 241 138.18 241 128s-8-18.28-15.14-25.18Zm-52.2 6.84-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32Z"/></svg>5-year price guarantee</p>
+                <div class="plan-perk">
+                  <span class="hbo-logo">HBO<span>Max</span></span>
+                  <p>HBO Max Basic with Ads plan: 12 months included <a href="#">See details</a></p>
+                </div>
+                <div class="plan-links"><a href="#">Details</a><a href="#">Broadband Facts</a></div>
+                <button class="plan-btn plan-select" type="button">Select</button>
+              </article>
+
+              <article class="plan-card plan-card--recommended is-selected" data-plan="1 Gig Fiber Internet" data-price="45">
+                <span class="plan-badge">Recommended</span>
+                <div class="plan-gauge"><svg viewBox="0 0 56 30" width="56" height="30" fill="none" aria-hidden="true"><path d="M4 28a24 24 0 0 1 48 0" stroke="#d9d9d9" stroke-width="4" stroke-linecap="round"/><path d="M4 28a24 24 0 0 1 46.5-6" stroke="#2760f0" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#171717"/><line x1="28" y1="28" x2="44" y2="16" stroke="#171717" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+                <h2 class="plan-name">1 Gig Fiber Internet</h2>
+                <div class="plan-price">$45<span>/mo.</span> <s>$129.99/mo.</s></div>
+                <p class="plan-qualifier">with Auto Pay &amp; Paperless Bill</p>
+                <p class="plan-guarantee"><svg viewBox="0 0 256 256" width="14" height="14" fill="#00a04a" aria-hidden="true"><path d="M225.86 102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28 13 138.18 5 128 5s-18.28 8-25.18 14.82c-3.94 3.77-8 7.67-11.57 9.14-3.27 1.36-8.69 1.44-13.94 1.52-9.76.15-20.82.31-28.51 8s-7.85 18.75-8 28.51c-.08 5.25-.16 10.67-1.52 13.94-1.47 3.56-5.37 7.63-9.14 11.57C23 109.72 15 117.82 15 128s8 18.28 14.82 25.18c3.77 3.94 7.67 8 9.14 11.57 1.36 3.27 1.44 8.69 1.52 13.94.15 9.76.31 20.82 8 28.51s18.75 7.85 28.51 8c5.25.08 10.67.16 13.94 1.52 3.56 1.47 7.63 5.37 11.57 9.14C109.72 233 117.82 241 128 241s18.28-8 25.18-14.82c3.94-3.77 8-7.67 11.57-9.14 3.27-1.36 8.69-1.44 13.94-1.52 9.76-.15 20.82-.31 28.51-8s7.85-18.75 8-28.51c.08-5.25.16-10.67 1.52-13.94 1.47-3.56 5.37-7.63 9.14-11.57C233 146.28 241 138.18 241 128s-8-18.28-15.14-25.18Zm-52.2 6.84-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32Z"/></svg>5-year price guarantee</p>
+                <div class="plan-perk">
+                  <span class="hbo-logo">HBO<span>Max</span></span>
+                  <p>HBO Max Basic with Ads plan: 12 months included <a href="#">See details</a></p>
+                </div>
+                <div class="plan-links"><a href="#">Details</a><a href="#">Broadband Facts</a></div>
+                <button class="plan-btn plan-select" type="button">Selected</button>
+              </article>
+            </div>
+
+            <p class="wired-note">Wired connection speeds. WiFi speeds may vary.</p>
+
+            <div class="quotes-subhead">TV (optional)</div>
+            <p class="quotes-promo"><svg viewBox="0 0 256 256" width="18" height="18" fill="#00a04a" aria-hidden="true"><path d="M243 110 146 13a14 14 0 0 0-10-4H40a14 14 0 0 0-14 14v96a14 14 0 0 0 4 10l97 97a14 14 0 0 0 20 0l96-96a14 14 0 0 0 0-20ZM76 84a12 12 0 1 1 12-12 12 12 0 0 1-12 12Z"/></svg>Save $5/mo. on Internet when you add TV</p>
+
+            <div class="plan-grid plan-grid--tv" id="tvGrid">
+              <article class="plan-card tv-card" data-tv="Entertainment TV" data-price="30">
+                <span class="plan-badge plan-badge--popular">Most popular</span>
+                <div class="tv-icon"><svg viewBox="0 0 256 256" width="34" height="34" fill="none" stroke="#2760f0" stroke-width="14"><rect x="32" y="56" width="192" height="128" rx="12"/><line x1="88" y1="216" x2="168" y2="216" stroke-linecap="round"/></svg></div>
+                <h2 class="plan-name">Entertainment TV</h2>
+                <div class="plan-price">$30<span>/mo.</span></div>
+                <p class="plan-qualifier">125+ channels</p>
+                <ul class="tv-features"><li>Local channels &amp; news</li><li>Sports &amp; entertainment</li><li>Free DVR included</li></ul>
+                <div class="plan-links"><a href="#">Details</a></div>
+                <button class="plan-btn plan-select" type="button">Add TV</button>
+              </article>
+              <article class="plan-card tv-card" data-tv="Extra TV" data-price="95">
+                <div class="tv-icon"><svg viewBox="0 0 256 256" width="34" height="34" fill="none" stroke="#2760f0" stroke-width="14"><rect x="32" y="56" width="192" height="128" rx="12"/><line x1="88" y1="216" x2="168" y2="216" stroke-linecap="round"/></svg></div>
+                <h2 class="plan-name">Extra TV</h2>
+                <div class="plan-price">$95<span>/mo.</span></div>
+                <p class="plan-qualifier">340+ channels</p>
+                <ul class="tv-features"><li>Everything in Entertainment</li><li>Premium movie channels</li><li>Regional sports networks</li></ul>
+                <div class="plan-links"><a href="#">Details</a></div>
+                <button class="plan-btn plan-select" type="button">Add TV</button>
+              </article>
+            </div>
+          </div>
+
+          <!-- Order summary / Monthly charges -->
+          <aside class="quotes-summary" id="quotesCart">
+            <div class="summary-card">
+              <div class="summary-top">
+                <div class="summary-due">
+                  <strong id="summaryTopTotal">$45.00</strong>
+                  <span>Due monthly</span>
+                </div>
+                <button class="summary-continue" type="button">Continue</button>
+              </div>
+              <h2 class="summary-title">Monthly charges</h2>
+              <div class="summary-lines" id="summaryLines">
+                <div class="summary-line">
+                  <span class="sl-label" id="summaryPlanName">1 Gig Fiber Internet</span>
+                  <span class="sl-value" id="summaryPlanPrice">$45.00/mo</span>
+                </div>
+                <div class="summary-line sl-credit">
+                  <span class="sl-label"><svg viewBox="0 0 256 256" width="15" height="15" fill="#00a04a" aria-hidden="true"><path d="M243.31 136 144 36.69A15.86 15.86 0 0 0 132.69 32H40a8 8 0 0 0-8 8v92.69A15.86 15.86 0 0 0 36.69 144L136 243.31a16 16 0 0 0 22.63 0l84.68-84.68a16 16 0 0 0 0-22.63ZM84 96a12 12 0 1 1 12-12 12 12 0 0 1-12 12Z"/></svg>5-year price guarantee</span>
+                  <span class="sl-value">included</span>
+                </div>
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-total">
+                <span>Due monthly</span>
+                <span id="summaryDueTotal">$45.00/mo</span>
+              </div>
+              <p class="summary-fineprint">Plus taxes and fees</p>
+              <div class="summary-included">
+                <span class="si-row"><svg viewBox="0 0 256 256" width="15" height="15" fill="#00a04a" aria-hidden="true"><path d="M229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z"/></svg><span>2-year price lock</span><b>included</b></span>
+                <span class="si-row"><svg viewBox="0 0 256 256" width="15" height="15" fill="#00a04a" aria-hidden="true"><path d="M229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z"/></svg><span>HBO Max Basic With Ads plan: 12 months included</span><b>included</b></span>
+                <span class="si-row"><svg viewBox="0 0 256 256" width="15" height="15" fill="#00a04a" aria-hidden="true"><path d="M229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z"/></svg><span>Free standard installation</span><b>included</b></span>
+              </div>
+              <div class="summary-promo">
+                <input type="text" placeholder="Promo Code" aria-label="Promo Code" />
+                <button type="button">Apply</button>
+              </div>
+            </div>
+            <p class="summary-disclaimer">For new residential customers only. Additional taxes, fees, surcharges and restrictions apply. Price subject to change at any time. <a href="#">Disclaimer</a></p>
+          </aside>
         </div>
       </section>
 
@@ -237,6 +292,6 @@
     <a class="menu-back" href="../" aria-label="Back to menu"></a>
 
     <script src="./config.js?v=20260618smartydesk1"></script>
-    <script src="./app.js?v=20260618smartydesk1"></script>
+    <script src="./app.js?v=20260618smartydesk2"></script>
   </body>
 </html>
