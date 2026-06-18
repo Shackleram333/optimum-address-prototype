@@ -230,6 +230,23 @@ function updateCtaLabel() {
   }
 }
 
+// Force the page back to the top across several timings. iOS re-scrolls the page
+// as the native keyboard animates closed (~250-350ms) — and again when AutoFill
+// Contact fills the field and dismisses the keyboard — which overrides a single
+// early scroll. Re-assert instantly on the inner viewport AND the window/document
+// (the prototype has two nested scrollers on a real phone) until things settle.
+function hardScrollToTop() {
+  const reset = () => {
+    if (phoneViewport) phoneViewport.scrollTop = 0;
+    window.scrollTo(0, 0);
+    const se = document.scrollingElement;
+    if (se) se.scrollTop = 0;
+  };
+  reset();
+  requestAnimationFrame(reset);
+  [80, 160, 300, 500, 750, 1000, 1300].forEach((t) => window.setTimeout(reset, t));
+}
+
 async function selectSuggestion(suggestion) {
   selectedSuggestion = suggestion;
   selectedUnit = "";
@@ -246,17 +263,7 @@ async function selectSuggestion(suggestion) {
     addressInput.blur();
     keyboardPinned = false;
     showKeyboard(false);
-    // The native keyboard dismissal (from blur) re-scrolls the page ~250-350ms
-    // later and overrides a single early scroll, leaving the field pushed off the
-    // top. Re-assert an instant scroll-to-top across several timings so the final
-    // resting position is the top regardless of when iOS settles.
-    const settleTop = () => {
-      phoneViewport.scrollTo({ top: 0, behavior: "auto" });
-      if (window.scrollY) window.scrollTo(0, 0);
-    };
-    settleTop();
-    requestAnimationFrame(settleTop);
-    [120, 300, 500, 800].forEach((t) => window.setTimeout(settleTop, t));
+    hardScrollToTop();
     return;
   }
 
@@ -999,6 +1006,16 @@ addressInput.addEventListener("blur", () => {
     const inUnitsMode = dropdown.classList.contains("dropdown-units");
     if (document.activeElement !== addressInput && !inUnitsMode) {
       setFocusState(false);
+      // The field can lose focus WITHOUT going through our dropdown — e.g. iOS
+      // AutoFill Contact fills the address and closes the keyboard. That path
+      // runs none of our selection code, so the reserved keyboard space and the
+      // scroll position are never reset, leaving the page over-scrolled. Handle
+      // it here for any real exit from the address step on touch.
+      if (isTouchDevice && currentPage === "address") {
+        keyboardPinned = false;
+        showKeyboard(false);
+        hardScrollToTop();
+      }
     }
     if (!keyboardPinned) {
       showKeyboard(false);
