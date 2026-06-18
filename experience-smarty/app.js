@@ -566,6 +566,36 @@ function showAddressError(show) {
   addressField.classList.toggle("error", show);
 }
 
+// Freeze BOTH scrollers so the native iOS keyboard/autofill can't drift the page:
+// the inner .phone-viewport (via the pin-frozen class) AND the window itself (the
+// .phone is taller than the screen, so the document can scroll ~230px — if the inner
+// scroller is locked, iOS just scrolls the window instead). A finger drag releases.
+let frozenPvTop = 0;
+let frozenWinY = 0;
+function applyPinFreeze() {
+  holdPin = true;
+  frozenPvTop = phoneViewport.scrollTop;
+  frozenWinY = window.scrollY || window.pageYOffset || 0;
+  phone.classList.add("pin-frozen");
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+}
+function releasePinFreeze() {
+  holdPin = false;
+  phone.classList.remove("pin-frozen");
+  document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+}
+// Safety net: if iOS still nudges either scroller for the focused input/autofill,
+// snap it back instantly. Direct scrollTop assignment + window.scrollTo("instant")
+// ignore CSS smooth-scroll, so this corrects in one frame and never crawls.
+function snapBackToFrozen() {
+  if (!holdPin) return;
+  if (phoneViewport.scrollTop !== frozenPvTop) phoneViewport.scrollTop = frozenPvTop;
+  const wy = window.scrollY || window.pageYOffset || 0;
+  if (wy !== frozenWinY) window.scrollTo(0, frozenWinY);
+}
+
 // Scroll the search step so the "See if Optimum..." headline sits just under the
 // top of the viewport (~10px), maximizing room for the dropdown/keyboard.
 function scrollSearchToTop(behavior = "smooth") {
@@ -604,9 +634,10 @@ function showKeyboard(show, focusEl) {
       // no tug-of-war, no slow-motion drift. A finger drag releases it (touchmove).
       holdPin = true;
       window.setTimeout(() => {
+        if (!holdPin) return; // user already grabbed the page with a finger
         scrollSearchToTop("instant");
         updateDropdownMaxHeight();
-        phone.classList.add("pin-frozen");
+        applyPinFreeze();
       }, 120);
     }
     return;
@@ -691,8 +722,7 @@ function enterAddressStep() {
   // stay-put guard in showKeyboard intentionally skips this while on the
   // address step, so clear it explicitly here).
   phone.classList.remove("keyboard-open");
-  phone.classList.remove("pin-frozen");
-  holdPin = false;
+  releasePinFreeze();
   phoneViewport.scrollTo({ top: 0, behavior: "smooth" });
   setCurrentPage("address");
 }
@@ -731,8 +761,7 @@ function enterPlansFlow() {
   keyboardPinned = false;
   showKeyboard(false);
   activeInput = null;
-  holdPin = false;
-  phone.classList.remove("pin-frozen");
+  releasePinFreeze();
   // Home (header/address/hero) stays visible behind the modal's scrim.
   checkingSection.classList.add("hidden");
   activeAccountSection.classList.add("hidden");
@@ -1098,13 +1127,12 @@ if (isTouchDevice) {
   phoneViewport.addEventListener(
     "touchmove",
     () => {
-      if (holdPin) {
-        holdPin = false;
-        phone.classList.remove("pin-frozen");
-      }
+      if (holdPin) releasePinFreeze();
     },
     { passive: true }
   );
+  phoneViewport.addEventListener("scroll", snapBackToFrozen, { passive: true });
+  window.addEventListener("scroll", snapBackToFrozen, { passive: true });
 }
 
 const requestedPage = getRequestedPageFromUrl();
