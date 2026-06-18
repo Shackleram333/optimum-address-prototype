@@ -253,19 +253,19 @@ async function selectSuggestion(suggestion) {
   updateCtaLabel();
   setFocusState(true);
   keyboardPinned = true;
-  if (isTouchDevice) {
-    showKeyboard(false);
-  } else {
+  if (!isTouchDevice) {
     // Desktop preview: swap the simulated keyboard for the unit list WITHOUT
-    // moving the page. Keep the reserved scroll height (`keyboard-open`) so the
-    // viewport stays exactly where address search left it (headline ~10px from
-    // the top) — removing it would shrink scrollHeight and clamp scrollTop back
-    // down, causing the headline to jump. Only the keyboard is hidden here.
+    // moving the page. Keep `keyboard-open` so the reserved scroll height stays
+    // and the viewport doesn't clamp/jump; only hide the simulated keyboard.
     const preservedScrollTop = phoneViewport.scrollTop;
     keyboard.classList.add("hidden");
     updateDropdownMaxHeight();
     phoneViewport.scrollTo({ top: preservedScrollTop });
   }
+  // Touch: do NOT call showKeyboard(false) — it would strip `keyboard-open` and its
+  // reserved scroll height before units mode is set, clamping scrollTop and dropping
+  // the headline. The native keyboard is dismissed by addressInput.blur() inside
+  // setDropdownMode("units"), which also restores the scroll position.
 
   // Reuse the already-expanded unit list if we've fetched it before (avoids
   // burning extra Smarty lookups when the picker is re-shown).
@@ -506,6 +506,8 @@ function setDropdownMode(mode) {
       window.requestAnimationFrame(restore);
       window.setTimeout(restore, 60);
       window.setTimeout(restore, 300);
+      window.setTimeout(restore, 500);
+      window.setTimeout(restore, 700);
     }
   } else {
     dropdownTitle.textContent = "Select an address to continue...";
