@@ -230,23 +230,6 @@ function updateCtaLabel() {
   }
 }
 
-// Force the page back to the top across several timings. iOS re-scrolls the page
-// as the native keyboard animates closed (~250-350ms) — and again when AutoFill
-// Contact fills the field and dismisses the keyboard — which overrides a single
-// early scroll. Re-assert instantly on the inner viewport AND the window/document
-// (the prototype has two nested scrollers on a real phone) until things settle.
-function hardScrollToTop() {
-  const reset = () => {
-    if (phoneViewport) phoneViewport.scrollTop = 0;
-    window.scrollTo(0, 0);
-    const se = document.scrollingElement;
-    if (se) se.scrollTop = 0;
-  };
-  reset();
-  requestAnimationFrame(reset);
-  [80, 160, 300, 500, 750, 1000, 1300].forEach((t) => window.setTimeout(reset, t));
-}
-
 async function selectSuggestion(suggestion) {
   selectedSuggestion = suggestion;
   selectedUnit = "";
@@ -263,7 +246,6 @@ async function selectSuggestion(suggestion) {
     addressInput.blur();
     keyboardPinned = false;
     showKeyboard(false);
-    hardScrollToTop();
     return;
   }
 
@@ -607,12 +589,11 @@ function showKeyboard(show, focusEl) {
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
-      // Pin the headline just under the top so the blue header scrolls out of
-      // view and the dropdown gets maximum room.
-      window.setTimeout(() => {
-        scrollSearchToTop();
-        updateDropdownMaxHeight();
-      }, 120);
+      // UX rule: once the field has focus we do NOT auto-scroll the page. iOS
+      // brings the focused field into view natively; we only reserve keyboard
+      // space (keyboard-open) and resize the dropdown after layout settles. The
+      // user remains free to scroll manually.
+      window.setTimeout(updateDropdownMaxHeight, 120);
     }
     return;
   }
@@ -1007,14 +988,13 @@ addressInput.addEventListener("blur", () => {
     if (document.activeElement !== addressInput && !inUnitsMode) {
       setFocusState(false);
       // The field can lose focus WITHOUT going through our dropdown — e.g. iOS
-      // AutoFill Contact fills the address and closes the keyboard. That path
-      // runs none of our selection code, so the reserved keyboard space and the
-      // scroll position are never reset, leaving the page over-scrolled. Handle
-      // it here for any real exit from the address step on touch.
+      // AutoFill Contact fills the address and closes the keyboard. In that path
+      // nothing collapses the reserved keyboard space, leaving an empty gap. Just
+      // release the reserved space here. Per the UX rule we do NOT force any
+      // scroll — the page stays where it is and the user can scroll manually.
       if (isTouchDevice && currentPage === "address") {
         keyboardPinned = false;
         showKeyboard(false);
-        hardScrollToTop();
       }
     }
     if (!keyboardPinned) {
