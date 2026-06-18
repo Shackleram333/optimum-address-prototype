@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260616smarty3" />
+    <link rel="stylesheet" href="./styles.css?v=20260616smarty4" />
   </head>
   <body>
     <div class="phone">
@@ -282,5 +282,42 @@
 
     <script src="./config.js?v=20260616smarty2"></script>
     <script src="./app.js?v=20260618smarty9"></script>
+    <script>
+      // Temporary on-device scroll diagnostic. Append ?debug=1 to the URL to show a
+      // live readout of every scroll/viewport metric, so the real-iOS keyboard
+      // over-scroll can be captured in a screenshot (it can't be reproduced in a
+      // desktop emulator). Remove once the mobile scroll bug is resolved.
+      (function () {
+        if (!new URLSearchParams(location.search).has("debug")) return;
+        var box = document.createElement("div");
+        box.style.cssText =
+          "position:fixed;top:0;left:0;right:0;z-index:99999;" +
+          "background:rgba(0,0,0,.82);color:#0f0;font:11px/1.35 monospace;" +
+          "padding:6px 8px;white-space:pre;pointer-events:none;";
+        document.body.appendChild(box);
+        var vv = window.visualViewport;
+        function pv() { return document.querySelector(".phone-viewport"); }
+        function phone() { return document.querySelector(".phone"); }
+        function render() {
+          var p = pv(), ph = phone();
+          box.textContent =
+            "win.scrollY=" + Math.round(window.scrollY) +
+            "  doc.scrollTop=" + Math.round((document.scrollingElement || {}).scrollTop || 0) +
+            "\npv.scrollTop=" + (p ? Math.round(p.scrollTop) : "-") +
+            "  pv.scrollH=" + (p ? p.scrollHeight : "-") +
+            "  pv.clientH=" + (p ? p.clientHeight : "-") +
+            "\nphone.h=" + (ph ? ph.offsetHeight : "-") +
+            "  innerH=" + window.innerHeight +
+            (vv ? "\nvv.h=" + Math.round(vv.height) + "  vv.offTop=" + Math.round(vv.offsetTop) + "  vv.pageTop=" + Math.round(vv.pageTop) : "") +
+            "\nkbOpen=" + (ph ? ph.classList.contains("keyboard-open") : "-");
+        }
+        ["scroll", "resize"].forEach(function (e) {
+          window.addEventListener(e, render, true);
+        });
+        if (vv) { vv.addEventListener("resize", render); vv.addEventListener("scroll", render); }
+        setInterval(render, 250);
+        render();
+      })();
+    </script>
   </body>
 </html>

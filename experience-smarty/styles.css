@@ -39,19 +39,6 @@ body {
   .phone { max-width:none; }
   .quotes-cart { width:100%; }
 }
-/* Real touch devices: collapse the dual-scroll phone-frame architecture into a
-   single scroll container. Lock the window so iOS cannot leave it over-scrolled
-   after the native keyboard opens/closes, and size .phone to the dynamic
-   viewport so .phone-viewport (height:100%) is the ONLY scroller. Desktop (which
-   reports hover/fine pointer) keeps the framed 940px mockup. */
-@media (hover: none) and (pointer: coarse) {
-  html, body { height: 100%; overflow: hidden; }
-  .phone {
-    max-width: none;
-    height: 100vh;      /* fallback */
-    height: 100dvh;     /* dynamic viewport height — accounts for the Safari URL bar */
-  }
-}
 .section { padding-inline:24px; }
 .hidden { display:none !important; }
 
