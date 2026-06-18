@@ -253,7 +253,19 @@ async function selectSuggestion(suggestion) {
   updateCtaLabel();
   setFocusState(true);
   keyboardPinned = true;
-  showKeyboard(false);
+  if (isTouchDevice) {
+    showKeyboard(false);
+  } else {
+    // Desktop preview: swap the simulated keyboard for the unit list WITHOUT
+    // moving the page. Keep the reserved scroll height (`keyboard-open`) so the
+    // viewport stays exactly where address search left it (headline ~10px from
+    // the top) — removing it would shrink scrollHeight and clamp scrollTop back
+    // down, causing the headline to jump. Only the keyboard is hidden here.
+    const preservedScrollTop = phoneViewport.scrollTop;
+    keyboard.classList.add("hidden");
+    updateDropdownMaxHeight();
+    phoneViewport.scrollTo({ top: preservedScrollTop });
+  }
 
   // Reuse the already-expanded unit list if we've fetched it before (avoids
   // burning extra Smarty lookups when the picker is re-shown).
