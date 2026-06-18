@@ -43,6 +43,11 @@ let selectedSuggestion = null; // the chosen building/address object
 let selectedUnit = ""; // chosen unit for MDU addresses
 let checkingTimer = null;
 let currentPage = "address";
+// When set (a number), the phone viewport is "locked" to this scrollTop. The native
+// keyboard/autofill on iOS likes to drift the inner scroller after focus; we snap it
+// back instantly so the search box stays exactly where it was pinned. A real finger
+// drag (touchstart) releases the lock so manual scrolling always works.
+let addressScrollLock = null;
 
 function setPageInUrl(page) {
   const url = new URL(window.location.href);
@@ -592,11 +597,14 @@ function showKeyboard(show, focusEl) {
     phone.classList.toggle("keyboard-open", !!show);
     updateDropdownMaxHeight();
     if (show) {
-      // Pin the headline near the top ONCE, on focus, so there's room to type.
-      // After this we never auto-scroll again — the user can scroll manually.
+      // Pin the headline near the top ONCE, on focus, so there's room to type, then
+      // LOCK that scroll position. The lock holds the page perfectly still through
+      // autofill/typing/keyboard-close (iOS can't drift it), and is released the
+      // instant the user drags with a finger (see the touchstart handler below).
       window.setTimeout(() => {
-        scrollSearchToTop();
+        scrollSearchToTop("auto");
         updateDropdownMaxHeight();
+        addressScrollLock = phoneViewport.scrollTop;
       }, 120);
     }
     return;
@@ -681,6 +689,7 @@ function enterAddressStep() {
   // stay-put guard in showKeyboard intentionally skips this while on the
   // address step, so clear it explicitly here).
   phone.classList.remove("keyboard-open");
+  addressScrollLock = null;
   phoneViewport.scrollTo({ top: 0, behavior: "smooth" });
   setCurrentPage("address");
 }
@@ -719,6 +728,7 @@ function enterPlansFlow() {
   keyboardPinned = false;
   showKeyboard(false);
   activeInput = null;
+  addressScrollLock = null;
   // Home (header/address/hero) stays visible behind the modal's scrim.
   checkingSection.classList.add("hidden");
   activeAccountSection.classList.add("hidden");
@@ -1077,28 +1087,29 @@ window.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: tru
 phoneViewport.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: true });
 applyKeyboardLayout(keyboardMode);
 
-// Native keyboard handling (real iOS/Android). When the on-screen keyboard closes
-// the visual viewport grows back; iOS often leaves the inner viewport scrolled to
-// the bottom (showing the hero). Re-pin the search box to the top on that close so
-// the address step always returns to "search box at top". A manual scroll doesn't
-// change the visual-viewport height, so this never fights manual scrolling.
-if (window.visualViewport && isTouchDevice) {
-  let lastVVHeight = Math.round(window.visualViewport.height);
-  window.visualViewport.addEventListener("resize", () => {
-    const h = Math.round(window.visualViewport.height);
-    const keyboardClosed = h > lastVVHeight + 80;
-    lastVVHeight = h;
-    if (
-      keyboardClosed &&
-      currentPage === "address" &&
-      phone.classList.contains("keyboard-open")
-    ) {
-      const repin = () => scrollSearchToTop("auto");
-      repin();
-      window.setTimeout(repin, 150);
-      window.setTimeout(repin, 350);
-    }
-  });
+// Scroll-lock for the native keyboard (real iOS/Android). After we pin the search
+// box on focus we set `addressScrollLock`; from then on any scroll that the user did
+// NOT cause with their finger (iOS keyboard/autofill drift) is snapped straight back
+// — same frame, so there is no visible shift. A genuine finger touch releases the
+// lock so the user can scroll the page freely whenever they want.
+if (isTouchDevice) {
+  phoneViewport.addEventListener(
+    "touchstart",
+    () => {
+      addressScrollLock = null;
+    },
+    { passive: true }
+  );
+  phoneViewport.addEventListener(
+    "scroll",
+    () => {
+      if (addressScrollLock == null) return;
+      if (Math.abs(phoneViewport.scrollTop - addressScrollLock) > 1) {
+        phoneViewport.scrollTop = addressScrollLock;
+      }
+    },
+    { passive: true }
+  );
 }
 
 const requestedPage = getRequestedPageFromUrl();
