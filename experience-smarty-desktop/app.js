@@ -347,7 +347,7 @@ function enterQuotes() {
   siteFooter.classList.add("hidden");
   scrim.classList.add("hidden");
   setDropdownMode("hidden");
-  quotesAddress.textContent = fullSelectedAddress() || addressInput.value.trim();
+  if (quotesAddress) quotesAddress.textContent = fullSelectedAddress() || addressInput.value.trim();
   quotesSection.classList.remove("hidden");
   document.body.classList.add("in-quotes");
   currentPage = "quotes";
