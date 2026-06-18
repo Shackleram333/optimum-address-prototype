@@ -563,7 +563,7 @@ function showAddressError(show) {
 
 // Scroll the search step so the "See if Optimum..." headline sits just under the
 // top of the viewport (~10px), maximizing room for the dropdown/keyboard.
-function scrollSearchToTop() {
+function scrollSearchToTop(behavior = "smooth") {
   const headline = addressSection.querySelector("h1") || addressSection;
   const delta =
     headline.getBoundingClientRect().top -
@@ -571,7 +571,7 @@ function scrollSearchToTop() {
     10;
   phoneViewport.scrollTo({
     top: phoneViewport.scrollTop + delta,
-    behavior: "smooth",
+    behavior,
   });
 }
 
@@ -1076,6 +1076,30 @@ window.addEventListener("resize", syncDropdownPlacementIfVisible);
 window.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: true });
 phoneViewport.addEventListener("scroll", syncDropdownPlacementIfVisible, { passive: true });
 applyKeyboardLayout(keyboardMode);
+
+// Native keyboard handling (real iOS/Android). When the on-screen keyboard closes
+// the visual viewport grows back; iOS often leaves the inner viewport scrolled to
+// the bottom (showing the hero). Re-pin the search box to the top on that close so
+// the address step always returns to "search box at top". A manual scroll doesn't
+// change the visual-viewport height, so this never fights manual scrolling.
+if (window.visualViewport && isTouchDevice) {
+  let lastVVHeight = Math.round(window.visualViewport.height);
+  window.visualViewport.addEventListener("resize", () => {
+    const h = Math.round(window.visualViewport.height);
+    const keyboardClosed = h > lastVVHeight + 80;
+    lastVVHeight = h;
+    if (
+      keyboardClosed &&
+      currentPage === "address" &&
+      phone.classList.contains("keyboard-open")
+    ) {
+      const repin = () => scrollSearchToTop("auto");
+      repin();
+      window.setTimeout(repin, 150);
+      window.setTimeout(repin, 350);
+    }
+  });
+}
 
 const requestedPage = getRequestedPageFromUrl();
 if (requestedPage === "checking") {
