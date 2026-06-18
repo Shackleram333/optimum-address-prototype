@@ -246,10 +246,17 @@ async function selectSuggestion(suggestion) {
     addressInput.blur();
     keyboardPinned = false;
     showKeyboard(false);
-    // Keyboard collapse removes the reserved bottom padding; without an explicit
-    // target the viewport clamps and jumps. Settle to the top so the filled field
-    // and CTA stay in view.
-    requestAnimationFrame(() => phoneViewport.scrollTo({ top: 0, behavior: "smooth" }));
+    // The native keyboard dismissal (from blur) re-scrolls the page ~250-350ms
+    // later and overrides a single early scroll, leaving the field pushed off the
+    // top. Re-assert an instant scroll-to-top across several timings so the final
+    // resting position is the top regardless of when iOS settles.
+    const settleTop = () => {
+      phoneViewport.scrollTo({ top: 0, behavior: "auto" });
+      if (window.scrollY) window.scrollTo(0, 0);
+    };
+    settleTop();
+    requestAnimationFrame(settleTop);
+    [120, 300, 500, 800].forEach((t) => window.setTimeout(settleTop, t));
     return;
   }
 
