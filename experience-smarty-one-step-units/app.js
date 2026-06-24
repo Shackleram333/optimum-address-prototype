@@ -152,7 +152,7 @@ async function fetchSmarty(query) {
     base.map(async (s) => {
       if (s.units <= 1) return [s];
       try {
-        const labels = await fetchSecondaries(s);
+        const labels = (await fetchSecondaries(s)).slice(0, 10);
         if (labels.length) {
           return labels.map((u) => {
             const line1 = `${s.line1} ${u}`.trim();
