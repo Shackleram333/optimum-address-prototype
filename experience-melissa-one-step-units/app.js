@@ -151,9 +151,25 @@ async function fetchMelissa(query) {
 
   // ONE-STEP UNITS: expand every multi-unit building inline so individual
   // apartments appear directly in the dropdown. With suitecompression=true a
-  // building's units arrive as a comma-list in SubBuilding; split it (capped at
-  // 10 units per building). A single/empty SubBuilding is one complete row.
-  const rows = [];
+  // building's units arrive as a comma-list in SubBuilding; split and sort them
+  // naturally (Apt 2 < Apt 4 < Apt 6). Cap at 10 units per building.
+  //
+  // Melissa sometimes returns both a bare street-address record and a SubBuilding
+  // record for the same building. Track which base addresses have units and
+  // suppress any bare row for those addresses so the building only appears once
+  // (as its individual unit rows).
+  const streetKey = (addr) => (addr.Address1 || "").trim().toLowerCase();
+
+  // Natural sort: extract leading digits from unit labels for numeric comparison.
+  const naturalUnit = (u) => {
+    const m = u.match(/\d+/);
+    return m ? Number(m[0]) : u;
+  };
+
+  const expandedStreets = new Set();
+  const unitGroups = []; // [{addr, units[]}]
+  const bareRows = [];   // [{addr}] — no SubBuilding
+
   results.forEach((r) => {
     const addr = (r && r.Address) || null;
     if (!addr) return;
@@ -162,11 +178,32 @@ async function fetchMelissa(query) {
       ? sub.split(",").map((u) => u.trim()).filter(Boolean)
       : [];
     if (units.length > 1) {
-      units.slice(0, 10).forEach((u) => rows.push(melissaToSuggestion(addr, u)));
+      expandedStreets.add(streetKey(addr));
+      unitGroups.push({ addr, units });
     } else {
-      rows.push(melissaToSuggestion(addr, units[0] || ""));
+      bareRows.push({ addr, unit: units[0] || "" });
     }
   });
+
+  const rows = [];
+
+  // Emit unit-expanded buildings (sorted naturally), capped at 10 each.
+  unitGroups.forEach(({ addr, units }) => {
+    const sorted = units.slice().sort((a, b) => {
+      const na = naturalUnit(a), nb = naturalUnit(b);
+      if (typeof na === "number" && typeof nb === "number") return na - nb;
+      return String(na).localeCompare(String(nb));
+    });
+    sorted.slice(0, 10).forEach((u) => rows.push(melissaToSuggestion(addr, u)));
+  });
+
+  // Emit bare rows only when the same street didn't produce a unit expansion.
+  bareRows.forEach(({ addr, unit }) => {
+    if (!expandedStreets.has(streetKey(addr))) {
+      rows.push(melissaToSuggestion(addr, unit));
+    }
+  });
+
   return rows;
 }
 
