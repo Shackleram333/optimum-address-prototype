@@ -160,11 +160,10 @@ async function fetchMelissa(query) {
   // (as its individual unit rows).
   const streetKey = (addr) => (addr.Address1 || "").trim().toLowerCase();
 
-  // Natural sort: extract leading digits from unit labels for numeric comparison.
-  const naturalUnit = (u) => {
-    const m = u.match(/\d+/);
-    return m ? Number(m[0]) : u;
-  };
+  // Natural sort: handles purely numeric labels (2, 4, 6) and alphanumeric ones
+  // (1A, 1B, 1E, 1F) correctly via locale-aware numeric collation.
+  const naturalSort = (a, b) =>
+    a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
 
   const expandedStreets = new Set();
   const unitGroups = []; // [{addr, units[]}]
@@ -189,11 +188,7 @@ async function fetchMelissa(query) {
 
   // Emit unit-expanded buildings (sorted naturally), capped at 10 each.
   unitGroups.forEach(({ addr, units }) => {
-    const sorted = units.slice().sort((a, b) => {
-      const na = naturalUnit(a), nb = naturalUnit(b);
-      if (typeof na === "number" && typeof nb === "number") return na - nb;
-      return String(na).localeCompare(String(nb));
-    });
+    const sorted = units.slice().sort(naturalSort);
     sorted.slice(0, 10).forEach((u) => rows.push(melissaToSuggestion(addr, u)));
   });
 
